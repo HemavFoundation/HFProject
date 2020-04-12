@@ -1,6 +1,6 @@
 <template>
   <div class="test">
-    <h1>{{ testProp }}</h1>
+    <h4>{{ testProp }}</h4>
   </div>
 </template>
 
