@@ -10,18 +10,18 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'Status',
+      path: '/status',
+      name: 'status',
       component: Status
     },
     {
-      path: '/',
-      name: 'Maintenance',
+      path: '/maintenance',
+      name: 'maintenance',
       component: Maintenance
     },
     {
-      path: '/',
-      name: 'Results',
+      path: '/results',
+      name: 'results',
       component: Results
     },
   ]
