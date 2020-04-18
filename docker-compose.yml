@@ -1,0 +1,43 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example_password
+    volumes:
+      - ./docker/mongo-db:/data/db
+  mongo-express:
+    image: mongo-express
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example_password
+      # ME_CONFIG_MONGODB_SERVER: 192.168.1.142
+
+  node:
+    image: node:alpine
+    volumes:
+      - ./:/usr/src/service
+    working_dir: /usr/src/service
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: development
+      EXPRESS_PORT: 5000
+    ports:
+      - 5000:5000
+    command: npm start
+  vue:
+    image: node:alpine
+    volumes:
+      - ./client:/usr/src/service
+    environment:
+      - NODE_ENV=development
+    working_dir: /usr/src/service
+    command: npm run serve
+    ports:
+      - 3000:3000
