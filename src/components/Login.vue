@@ -1,5 +1,4 @@
 <template>
-  <v-app id="inspire">
     <v-content>
       <v-container class="fill-height" fluid>
         <v-col align="center">
@@ -39,27 +38,19 @@
         </v-row>
       </v-container>
     </v-content>
-    <Footer />
-  </v-app>
 </template>
 
-
-
 <script>
-import Footer from "./footer";
-
 export default {
   name: "Login",
 
   components: {
-    Footer
   },
   props: {
     source: String
   },
 
   data: () => ({
-    //
   })
 };
 </script>
