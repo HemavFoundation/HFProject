@@ -1,6 +1,7 @@
 <template>
 <div>
   <v-app id="inspire">
+    <Title />
     <Login />
     <Footer />
   </v-app>
@@ -11,12 +12,14 @@
 <script>
 import Login from "./components/Login";
 import Footer from "./components/Footer";
+import Title from "./components/Title";
 
 export default {
   name: "App",
   components: {
     Login,
-    Footer
+    Footer,
+    Title
   },
   props: {
     source: String
