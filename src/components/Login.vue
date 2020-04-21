@@ -26,11 +26,19 @@
                         <v-btn color="primary">Login</v-btn>
                     </div>
                     <div class="mx-1 my-1">
-                        <v-btn color="primary">Create account</v-btn>
+                         <router-link to="Register"> 
+                           <v-btn color="primary">Create account</v-btn>
+                         </router-link>
                     </div>
                     <div class="mx-2 my-1">
+                      <router-link to="RecoverAccount">
                         <v-btn color="primary">Recover account</v-btn>
+<<<<<<< Updated upstream:src/components/Login.vue
                     </div>         
+=======
+                      </router-link>
+                    </div>
+>>>>>>> Stashed changes:client/src/components/Login.vue
                 </v-row>
               </v-card-actions>
             </v-card>
