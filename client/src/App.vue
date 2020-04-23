@@ -1,17 +1,29 @@
 <template>
 <div>
-  <v-app id="inspire">
-    <!-- <Title /> -->
-    <Login />
-    <Footer />
-  </v-app>
+  <b-container id="app">
+    <b-row>
+      <b-col>
+        <navbar/>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col>
+        <router-view/>
+      </b-col>
+    </b-row>
+  </b-container>
+  <Footer />
 </div>
+
+
 </template>
 
 
 <script>
 import Login from "./components/Login";
 import Footer from "./components/Footer";
+import Navbar from '@/components/Navbar';
+
 // import Title from "./components/Title";
 
 export default {
@@ -19,6 +31,7 @@ export default {
   components: {
     Login,
     Footer,
+    Navbar
     // Title
   },
   props: {
