@@ -33,12 +33,8 @@
                     <div class="mx-2 my-1">
                       <router-link to="RecoverAccount">
                         <v-btn color="primary">Recover account</v-btn>
-<<<<<<< Updated upstream:src/components/Login.vue
-                    </div>         
-=======
                       </router-link>
                     </div>
->>>>>>> Stashed changes:client/src/components/Login.vue
                 </v-row>
               </v-card-actions>
             </v-card>
