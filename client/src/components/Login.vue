@@ -14,9 +14,8 @@
               </v-toolbar>
               <v-card-text>
                 <v-form>
-                  <v-text-field label="Username" name="login" type="text" />
-
-                  <v-text-field id="password" label="Password" name="password" type="password" />
+                  <v-text-field label="userName" name="userName" type="text" @change="setUserName" />
+                  <v-text-field id="password" label="password" name="password" type="password" @change="setUserPassword" />
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -45,16 +44,20 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: "Login",
-
   components: {
+  },
+  methods: {
+    ...mapActions({
+      setUserName: 'user/setUserName',
+      setUserPassword: 'user/setUserPassword',
+    })
   },
   props: {
     source: String
-  },
-
-  data: () => ({
-  })
+  }
 };
 </script>
