@@ -1,7 +1,9 @@
 <template>
   <p class="statusText">
-    THIS IS MAINTENANCE PAGE !!!!!
+    THIS IS MAINTENANCE PAGE example
+    
   </p>
+
 </template>
 <script>
 export default {
@@ -11,7 +13,7 @@ export default {
 <style scoped>
 .statusText{
     font-size: 35px;
-    color: pink;
+    color: red;
     text-align: center;
     position: relative;
     top:30px;
