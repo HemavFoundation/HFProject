@@ -73,11 +73,11 @@ export default {
     axios
     //token.json must be in public folder to work properly
     .get('../token.json')
-    .then(response => (this.token = response))
+    .then(response => (this.token = response.data[0].token))
     //console log, must be deleted after test purposes
-    /*.then(function(token){
+    .then(function(token){
        console.log(token)
-    })*/
+    })
   },
   created(){
     console.log("Token from store");
