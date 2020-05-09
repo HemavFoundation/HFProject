@@ -18,7 +18,6 @@ const api = express.Router()
 //rutas autenticación
 api.post('/signup',userCtrl.signUp)
 api.post('/signin',userCtrl.signIn)
-api.get('/private',auth, userCtrl.returnUser) // actualmente no devuelve nada
 
 //rutas dron
 api.get('/drone',droneCtrl.getDrones)

@@ -30,24 +30,10 @@ function signIn(req,res) {
         })
     })
 }
-function returnUser(req,res) {
-    User.findOne({token: req.token}, function(err, user) {
-        if (err) {
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-        } else {
-            res.json({
-                type: true,
-                data: user
-            });
-        }
-    });
-}
+
 
 module.exports = {
     signUp,
     signIn,
-    returnUser
+    
 }
