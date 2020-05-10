@@ -1,6 +1,5 @@
 'use strict'
 
-const productCtrl = require('../controllers/product')
 const droneCtrl = require('../controllers/drone')
 const express = require('express')
 const userCtrl=require('../controllers/user')
