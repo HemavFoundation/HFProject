@@ -2,7 +2,6 @@
 <div>
   <v-app id="app">
     <router-view/>
-    <Map />
     <Footer />
   </v-app>
 </div>
