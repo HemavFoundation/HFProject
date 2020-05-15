@@ -12,7 +12,7 @@
           contain
           height="50"
         />
-      <v-toolbar-title>Drone Operations Management Application</v-toolbar-title>
+      <v-toolbar-title class="title">Drone Operations Management Application</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-toolbar-title>Hello username</v-toolbar-title>
