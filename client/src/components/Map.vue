@@ -1,28 +1,30 @@
 <template>
 
-  <div style="height: 350px;">
-    <div style="height: 15%">
+  <div style="
+        width: 100%;
+        height: 500px;
+        z-index: 1;
+        position: relative;
+  ">
+    <div style="height: 5%">
       <span>Center: {{ center }}</span>
       <span>Zoom: {{ zoom }}</span>
       <span>Bounds: {{ bounds }}</span>
     </div>
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
-      style="width: 80%;
-      position: relative; 
-      left: 50%;
-      transform: translateX(-50%);"
       :zoom="zoom"
       :center="center"
       @update:zoom="zoomUpdated"
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
+    
       <l-tile-layer :url="url"></l-tile-layer>
       <!-- For representing a rectangle in a specific area-->
       <l-rectangle :bounds="rectangle.bounds" :l-style="rectangle.style"></l-rectangle>
     </l-map>
-  </div>
+    </div>
 </template>
 
 <script>

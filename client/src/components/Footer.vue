@@ -1,8 +1,9 @@
 <template>
-  <v-card height="150">
+  <v-card height="100">
     <v-footer
       absolute
       class="primary"
+      app
     >
       <v-col
         class="text-center pa-1"
