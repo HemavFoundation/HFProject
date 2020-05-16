@@ -29,6 +29,21 @@ Vue.use(VueRouter)
     path: '/recoverAccount',
     name: 'RecoverAccount',
     component: RecoverAccount
+  },
+  {
+    path: '/status',
+    name: 'Status',
+    component: () => import('../views/Status.vue')
+  },
+  {
+    path: '/dronelist',
+    name: 'DroneList',
+    component: () => import('../views/DroneList.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/Profile.vue')
   }
 ]
 

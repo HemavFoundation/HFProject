@@ -13,16 +13,18 @@
                 <v-spacer />
               </v-toolbar>
               <v-card-text>
-                <v-form>
-                  <v-text-field label="userName" name="userName" type="text" @change="setUserName" />
-                  <v-text-field id="password" label="password" name="password" type="password" @change="setUserPassword" />
+                <v-form v-on:submit="login">
+                  <v-text-field label="email" name="email" id="email" type="text" />
+                  <v-text-field id="password" label="password" name="password" type="password"/>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
                 <v-row align="center">
                     <div class="mx-2 my-1">
-                        <v-btn color="primary" v-on:click="setToken(token)">Login</v-btn>
+                      <router-link to="Status">
+                        <v-btn color="primary" v-on:click="login(), setToken(token)">Login</v-btn>
+                    </router-link>
                     </div>
                     <div class="mx-1 my-1">
                          <router-link to="Register"> 
@@ -44,12 +46,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions } from 'vuex';
 import axios from 'axios';
-
 export default {
   name: "Login",
-  components: {
+    data(){
+    return{
+      token: null
+    }
   },
   methods: {
     //call actions from the store
@@ -57,27 +61,23 @@ export default {
       setUserName: 'user/setUserName',
       setUserPassword: 'user/setUserPassword',
       setToken: 'token/setToken'
-    })
-  },
-  props: {
-    source: String
-  },
-  //token var is created in data
-  data(){
-    return{
-      token: null
-    }
-  },
-  //we get the token from a json and set the feedback to the token var through response
-  mounted(){
-    axios
-    //token.json must be in public folder to work properly
-    .get('../token.json')
-    .then(response => (this.token = response.data[0].token))
-    //console log, must be deleted after test purposes
-    .then(function(token){
-       console.log(token)
-    })
+    }),
+    login: () => {    
+                let email = document.getElementById("email").value;
+                let password = document.getElementById("password").value;
+                let login = () => {
+                    let data = {
+                        email: email,
+                        password: password
+                    }
+                    axios.post("http://localhost:3001/api/signin", data)
+                    .then(function (response) {
+                      const token = response.data.token;    
+                      console.log(token);
+                          })
+                }
+                login()
+            }
   },
   created(){
     console.log("Token from store");

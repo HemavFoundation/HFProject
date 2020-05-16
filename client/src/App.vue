@@ -13,7 +13,6 @@
 import Login from "./components/Login";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Map from "./components/Map";
 
 const axios = require('axios').default;
 
@@ -23,7 +22,6 @@ export default {
     Login,
     Footer,
     Header,
-    Map
   },
   props: {
     source: String
