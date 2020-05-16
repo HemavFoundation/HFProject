@@ -9,14 +9,6 @@ const crypto = require ('crypto')
 
 //el lowercase es para que guarde todos los emails en letra minuscula
 const UserSchema = new Schema({
-<<<<<<< HEAD
-    email: {type: String, unique: true, lowercase:true},
-    displayName: String,
-    avatar: String,
-    password: {type:String, select:false},
-    signupDate: { type: Date, default: Date.now()},
-    lastLogin: Date
-=======
     signupDate: { type: Date, default: Date.now()},
     lastLogin: Date,
     displayName: String,
@@ -30,7 +22,6 @@ const UserSchema = new Schema({
     email: {type: String, unique: true, lowercase:true},
     password: {type:String, select:false},
     
->>>>>>> dc7bb7091fb49e5cb713e1033bb94a20affcfbde
 })
 
 //preguarda la contraseña hasheada para aumentar la seguridad
