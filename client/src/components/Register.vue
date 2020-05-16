@@ -10,9 +10,13 @@
               </v-toolbar>
               <v-card-text>
                 <v-form v-on:submit="register">
-                  <v-text-field label="Write your username" name="userName" id="userName"  type="text" />
+                  <v-text-field label="Write your name" name="name" id="name"  type="text" />
+                  <v-text-field label="Write your surname" name="surName" id="surName"  type="text" />
                   <v-text-field label="Write your email" name="email" id="email" type="text" />
-                  <v-text-field label="Write your desired password" id="password" name="password" type="password"/>
+                  <v-text-field label="Write your password" id="password" name="password" type="password"/>
+                  <v-text-field label="Write your ID number" name="userNameId" id="userNameId"  type="text" />
+                  <!-- <v-text-field label="Select your country" name="country" id="country"  type="text" />
+                  <v-text-field label="Select your user rol" name="userName" id="userName"  type="text" /> -->
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -36,19 +40,23 @@ export default {
   methods: {    
             register: () => {    
                 let email = document.getElementById("email").value;
-                let displayName = document.getElementById("userName").value;
+                let name = document.getElementById("name").value;
+                let surName = document.getElementById("surName").value;
+                let userNameId = document.getElementById("userNameId").value;
                 let password = document.getElementById("password").value;
                 let register = () => {
                     let data = {
                         email: email,
-                        displayName: displayName,
+                        name: name,
+                        surName: surName,
+                        userNameId: userNameId,
                         password: password
                     }
                     axios.post("http://localhost:3001/api/signup", data)
-                        .then((response) => {
-                          console.log("Logueado correctamente")
+                    .then(function (response) {
+                      console.log(response.data);
                           router.push("/")
-                        })
+                          })
                 }
                 register()
             }
