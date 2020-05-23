@@ -29,15 +29,14 @@ function saveDrone (req,res) {
  console.log(req.body)
 
  let drone = new Drone()
- drone.name = req.body.name
- drone.picture =req.body.picture
- drone.updated_date = req.body.updated_date
- drone.updated_hour = req.body.updated_hour
- drone.postition_lat = req.body.postition_lat
- drone.postition_lon = req.body.postition_lon
- drone.postition_alt = req.body.postition_alt
- drone.flight_time = req.body.flight_time
- drone.ETA = req.body.ETA
+ drone.IDplate = req.body.IDplate
+ drone.Manufacturer =req.body.Manufacturer
+ drone.Madedate = req.body.Madedate
+ drone.Owner = req.body.Owner
+ drone.Personincharge = req.body.Personincharge
+ drone.Pilotassigned = req.body.Pilotassigned
+ drone.Country = req.body.Country
+
 
  drone.save((err, droneStored)  => {
      if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
