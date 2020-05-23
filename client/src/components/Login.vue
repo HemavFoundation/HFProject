@@ -23,7 +23,7 @@
                 <v-row align="center">
                     <div class="mx-2 my-1">
                       <router-link to="Status">
-                        <v-btn color="primary" v-on:click="login(), setToken(token)">Login</v-btn>
+                        <v-btn color="primary" v-on:click="login()">Login</v-btn>
                     </router-link>
                     </div>
                     <div class="mx-1 my-1">
@@ -62,26 +62,24 @@ export default {
       setUserPassword: 'user/setUserPassword',
       setToken: 'token/setToken'
     }),
-    login: () => {    
-                let email = document.getElementById("email").value;
-                let password = document.getElementById("password").value;
-                let login = () => {
-                    let data = {
-                        email: email,
-                        password: password
-                    }
-                    axios.post("http://localhost:3001/api/signin", data)
-                    .then(function (response) {
-                      const token = response.data.token;    
-                      console.log(token);
-                          })
-                }
-                login()
-            }
+    login() {
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      const userData = {
+        email: email,
+        password: password
+      }
+
+      axios.post("http://localhost:3001/api/signin", userData)
+        .then(response => {
+          const token = response.data.token;    
+          this.token = token
+          this.setToken(token)
+        })
+      }
   },
   created(){
     console.log("Token from store");
-    console.log(this.$store.state.token);
   }
 };
 </script>
