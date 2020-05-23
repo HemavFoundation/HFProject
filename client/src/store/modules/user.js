@@ -1,6 +1,7 @@
 const state = {
   userName: '',
-  password: ''
+  password: '',
+  token: ''
 }
 
 const actions = {
@@ -9,6 +10,9 @@ const actions = {
   },
   setUserPassword({commit}, password) {
     commit('SET_USER_PASSWORD', password)
+  },
+  setToken({commit}, token) {
+    commit('SET_TOKEN', token)
   }
 }
 
@@ -18,6 +22,9 @@ const mutations = {
   },
   SET_USER_PASSWORD(state, password) {
     state.password = password
+  },
+  SET_TOKEN(state, token) {
+    state.token = token
   }
 }
 
@@ -27,6 +34,9 @@ const getters = {
   },
   getUserPassword(state) {
     return state.password
+  },
+  getToken(state) {
+    return state.token
   }
 }
 
