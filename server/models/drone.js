@@ -12,4 +12,4 @@ const DroneSchema = Schema ({
     Country: String,
 })
 
-module.exports = mongoose.model('Drone',DroneSchema)
+module.exports = mongoose.model('Drone', DroneSchema)
