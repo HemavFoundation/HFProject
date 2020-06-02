@@ -46,7 +46,11 @@ export default {
   name: "Header",
   computed: {
     ...mapGetters({
-      userToken: 'user/getToken'
+      userToken: "user/getToken",
+      userEmail: "user/getEmail",
+      userName: "user/getUserName",
+      userSurName: "user/getSurName",
+      userCountry: "user/getCountry"
     })
   },
 };

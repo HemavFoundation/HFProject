@@ -50,16 +50,6 @@ import { mapActions, mapGetters } from 'vuex';
 import axios from 'axios';
 export default {
   name: "Login",
-<<<<<<< Updated upstream
-    data(){
-    return{
-      token: null
-    }
-  },
-  computed: {
-    ...mapGetters({
-      userToken: 'user/getToken'
-=======
   data() {
     return {
       token: null,
@@ -72,24 +62,21 @@ export default {
   computed: {
     ...mapGetters({
       userToken: "user/getToken",
-      userEmail: "user/getEmail"
->>>>>>> Stashed changes
+      userEmail: "user/getEmail",
+      userName: "user/getUserName",
+      userSurName: "user/getSurName",
+      userCountry: "user/getCountry"
     })
   },
   methods: {
     //call actions from the store
     ...mapActions({
-<<<<<<< Updated upstream
-      setUserName: 'user/setUserName',
-      setUserPassword: 'user/setUserPassword',
-      setToken: 'user/setToken'
-=======
       setUserName: "user/setUserName",
       setUserSurName: "user/setUserSurName",
       setUserPassword: "user/setUserPassword",
       setEmail: "user/setEmail",
-      setToken: "user/setToken"
->>>>>>> Stashed changes
+      setToken: "user/setToken",
+      setCountry: "user/setCountry"
     }),
     login() {
       let email = document.getElementById("email").value;
@@ -101,30 +88,29 @@ export default {
 
       axios.post("http://localhost:3001/api/signin", userData)
         .then(response => {
-<<<<<<< Updated upstream
-          const token = response.data.token;   
-          this.token = token
-          this.setToken(token)
-          console.log({token})
-          if(token) {
-            this.$router.push('/Status')
-          }else{
-            confirm("A tu casa");
-=======
-          console.log(response.data);
+          //Declaring all data from user that will be stored on the app
           const token = response.data.token;
+          const email = response.data.email;
+          const userName = response.data.userName;
+          const surName = response.data.surName;
+          const country = response.data.country;
+          //Saving the data into the vuex store
           this.token = token;
           this.setToken(token);
-          console.log({ token });
-          const email = response.data.email;
           this.email = email;
           this.setEmail(email);
-          console.log({ email });
+          this.userName = userName;
+          this.setUserName(userName);
+          this.surName = surName;
+          this.setUserSurName(surName);
+          this.country = country;
+          this.setCountry(country);
+
+
           if (token) {
             this.$router.push("/Status");
           } else {
             confirm("Something went wrong, please try again");
->>>>>>> Stashed changes
           }
         });
       }

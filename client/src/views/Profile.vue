@@ -8,7 +8,7 @@
                 <v-card-text>
                     <v-text-field
                         v-model="form.userName"
-                        label="userName"
+                        label="Name"
                         :disabled="true"></v-text-field>
                     <v-text-field
                         v-model="form.email"
@@ -34,7 +34,7 @@ import Navbar from '@/components/Navbar.vue';
             return {
                 loading: false,
                 form: {
-                    userName: 'Username',
+                    userName: 'testName',
                     email: 'mail@mail.com'
                 },
 
