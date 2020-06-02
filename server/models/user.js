@@ -14,8 +14,8 @@ const UserSchema = new Schema({
     // displayName: String,
     // avatar: String,
 
-    // name: {type: String},
-    // surName: {type: String},
+    name: {type: String},
+    surName: {type: String},
     // userNameId: {type: String},
     // country: {type: String},
     // userRol: {type: String},

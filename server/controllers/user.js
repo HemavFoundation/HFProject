@@ -9,10 +9,10 @@ function signUp (req,res) {
     const user = new User({
         // userRol: req.body.userRol,
         // displayName: req.body.displayName,
-        // name: req.body.name,
-        // surName: req.body.surName,
+        name: req.body.name,
+        surName: req.body.surName,
         // userNameId: req.body.userNameId,
-        // country: req.body.country,
+        country: req.body.country,
         email: req.body.email,
         password: req.body.password
     })
@@ -36,7 +36,10 @@ function signIn(req,res) {
         res.status(200).send({
             message: 'Logueado correctamente',
             token: service.createToken(user),
-            email: user.email
+            email: user.email,
+            name: user.name,
+            surName: user.surName,
+            country: user.country
         })
     })
     // res.send('hola')

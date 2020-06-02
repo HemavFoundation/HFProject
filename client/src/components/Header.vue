@@ -15,7 +15,7 @@
       <v-toolbar-title class="title">Drone Operations Management Application</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-toolbar-title>Hello username</v-toolbar-title>
+      <v-toolbar-title>Hello {{this.$store.state.user.email}}</v-toolbar-title>
       <v-menu bottom left>
             <template v-slot:activator="{ on }">
               <v-btn
