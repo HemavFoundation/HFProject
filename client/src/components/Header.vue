@@ -66,4 +66,4 @@ color: white;
   left: 160px;
   color: white;
 }
-</style>>
+</style>
