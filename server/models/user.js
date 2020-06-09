@@ -9,12 +9,12 @@ const crypto = require ('crypto')
 
 //el lowercase es para que guarde todos los emails en letra minuscula
 const UserSchema = new Schema({
-    // signupDate: { type: Date, default: Date.now()},
-    // lastLogin: Date,
+    signupDate: { type: Date, default: Date.now()},
+    lastLogin: Date,
     // displayName: String,
     // avatar: String,
 
-    // name: {type: String},
+    name: {type: String},
     // surName: {type: String},
     // userNameId: {type: String},
     // country: {type: String},
