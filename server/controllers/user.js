@@ -16,12 +16,13 @@ function signUp (req,res) {
         email: req.body.email,
         password: req.body.password
     })
-
+    console.log(user);
     user.save((err) =>{
+        console.log("inside save user");
         if (err) res.status(500).send({message: `Error al crear el usuario: ${err}`, error: true})
 
         //return res.status(200).send({ token: service.createToken(user)})
-        return res.status(200).send({ message: 'Usuario registrado correctamente', status: 'ok'})
+        return res.status(200).send({ message: 'Usuario registrado correctamente2', status: 'ok', user: user})
     })
 }
 
@@ -32,15 +33,17 @@ function signIn(req,res) {
 
         if (!user) return res.status(404).send({message: 'No existe el usuario'})
 
-        req.user= user
-        res.status(200).send({
+        const userInfo={
             message: 'Logueado correctamente',
             token: service.createToken(user),
             email: user.email,
             name: user.name,
             surName: user.surName,
             country: user.country
-        })
+        };
+        req.user= user;
+        console.log(userInfo);
+        res.status(200).send(userInfo);
     })
     // res.send('hola')
 }

@@ -41,6 +41,11 @@ Vue.use(VueRouter)
     component: () => import('../views/DroneList.vue')
   },
   {
+    path: '/dronedetails',
+    name: 'DroneDetails',
+    component: () => import('../views/DroneDetails.vue')
+  },
+  {
     path: '/profile',
     name: 'Profile',
     component: () => import('../views/Profile.vue')

@@ -63,8 +63,7 @@
                   hide-details
                   single-line
                 ></v-select>
-                <!-- <v-text-field label="Select your country" name="country" id="country"  type="text" />
-                <v-text-field label="Select your user rol" name="userName" id="userName"  type="text" />-->
+
               </v-form>
             </v-card-text>
             <v-card-actions>
