@@ -10,7 +10,7 @@ function signUp (req,res) {
         // userRol: req.body.userRol,
         // displayName: req.body.displayName,
         name: req.body.name,
-        surName: req.body.surName,
+        // surName: req.body.surName,
         // userNameId: req.body.userNameId,
         country: req.body.country,
         email: req.body.email,
@@ -28,7 +28,6 @@ function signUp (req,res) {
 
 function signIn(req,res) {
     User.findOne({email: req.body.email, password: req.body.password}, (err, user) =>{
-        console.log(user)
         if (err) return res.status(500).send({message: err})
 
         if (!user) return res.status(404).send({message: 'No existe el usuario'})
@@ -37,19 +36,25 @@ function signIn(req,res) {
             message: 'Logueado correctamente',
             token: service.createToken(user),
             email: user.email,
-            name: user.name,
-            surName: user.surName,
-            country: user.country
-        };
-        req.user= user;
-        console.log(userInfo);
-        res.status(200).send(userInfo);
+            name : user.name
+        }
     })
-    // res.send('hola')
+}
+function updateUser(req,res) {
+    let UserId = req.params.UserId
+    let update = req.body
+   
+    User.findByIdAndUpdate(UserId, update, (err,userUpdated)=>{
+       if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
+   
+       res.status(200).send({ user: userUpdated})
+   
+    })
 }
 
 
 module.exports = {
     signUp,
     signIn,
+    updateUser
 }
