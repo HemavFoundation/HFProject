@@ -12,11 +12,11 @@
             </v-toolbar>
             <v-card-text>
               <v-form v-on:submit="registerDrone">
-                <v-text-field label="ID Plate" name="idPlate" id="idPlate" type="text" />
+                <v-text-field label="ID Plate" name="IdPlate" id="IdPlate" type="text" />
                 <v-text-field
                   label="Manufacturer"
-                  name="manufacturer"
-                  id="manufacturer"
+                  name="Manufacturer"
+                  id="Manufacturer"
                   type="text"
                 />
                 <v-menu
@@ -30,8 +30,8 @@
                   <template v-slot:activator="{ on }">
                     <v-text-field
                       label="Made date"
-                      name="madeDate"
-                      id="madeDate"
+                      name="MadeDate"
+                      id="MadeDate"
                       v-model="date"
                       readonly
                       v-on="on"
@@ -40,17 +40,17 @@
 
                   <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
                 </v-menu>
-                <v-text-field label="Owner" id="owner" name="owner" type="text" />
+                <v-text-field label="Owner" id="Owner" name="Owner" type="text" />
                 <v-text-field
                   label="Person in charge"
-                  name="personInCharge"
-                  id="personInCharge"
+                  name="PersonInCharge"
+                  id="PersonInCharge"
                   type="text"
                 />
                 <v-text-field
                   label="Pilots assigned"
-                  name="pilotsAssigned"
-                  id="pilotsAssigned"
+                  name="PilotsAssigned"
+                  id="PilotsAssigned"
                   type="text"
                 />
                 <v-select
@@ -58,8 +58,8 @@
                   :items="countries"
                   menu-props="auto"
                   label="Country"
-                  name="country"
-                  id="country"
+                  name="Country"
+                  id="Country"
                   hide-details
                   single-line
                 ></v-select>
@@ -83,6 +83,8 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import Header from "@/components/Header.vue";
+import axios from "axios";
+import router from '../router';
 
 export default {
   name: "RegisterDrone",
@@ -91,30 +93,36 @@ export default {
       this.$router.go(-1);
     },
     registerDrone() {
-      let idPlate = document.getElementById("idPlate").value;
-      let manufacturer = document.getElementById("manufacturer").value;
-      let madeDate = document.getElementById("madeDate").value;
-      let owner = document.getElementById("owner").value;
-      let personInCharge = document.getElementById("personInCharge").value;
-      let pilotsAssigned = document.getElementById("pilotsAssigned").value;
-      let country = document.getElementById("country").value;
-      let registerDrone = () => {
+      let IdPlate = document.getElementById("IdPlate").value;
+      let Manufacturer = document.getElementById("Manufacturer").value;
+      let MadeDate = document.getElementById("MadeDate").value;
+      let Owner = document.getElementById("Owner").value;
+      let PersonInCharge = document.getElementById("PersonInCharge").value;
+      let PilotsAssigned = document.getElementById("PilotsAssigned").value;
+      let Country = document.getElementById("Country").value;
         let data = {
-          idPlate: idPlate,
-          manufacturer: manufacturer,
-          madeDate: madeDate,
-          owner: owner,
-          personInCharge: personInCharge,
-          pilotsAssigned: pilotsAssigned,
-          country: country
+          IdPlate: IdPlate,
+          Manufacturer: Manufacturer,
+          MadeDate: MadeDate,
+          Owner: Owner,
+          PersonInCharge: PersonInCharge,
+          PilotsAssigned: PilotsAssigned,
+          Country: Country
         };
         axios
-          .post("http://localhost:3001/api/saveDrone", data)
+        //Use .create to make authorized posts through headers + token
+        .create({
+            baseURL: 'http://localhost:8080',
+            headers: {
+                'authorization': 'Bearer ' + this.$store.state.user.token
+            }
+          })
+          .post("http://localhost:3001/api/drone", data)
           .then(function(response) {
             console.log(response.data);
-            router.push("/dronelist");
+            router.push("/DroneList");
           });
-      };
+
     }
   },
   components: {

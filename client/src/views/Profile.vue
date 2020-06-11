@@ -34,8 +34,8 @@ import Navbar from '@/components/Navbar.vue';
             return {
                 loading: false,
                 form: {
-                    userName: 'testName',
-                    email: 'mail@mail.com'
+                    userName: this.$store.state.user.userName,
+                    email: this.$store.state.user.email
                 },
 
             }

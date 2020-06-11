@@ -90,7 +90,6 @@ export default {
         email: email,
         password: password
       };
-
       axios
         .post("http://localhost:3001/api/signin", userData)
         .then(response => {
@@ -111,8 +110,6 @@ export default {
           this.setUserSurName(surName);
           this.country = country;
           this.setCountry(country);
-
-
           if (token) {
             this.$router.push("/Status");
           } else {
@@ -121,10 +118,5 @@ export default {
         });
     }
   },
-  created() {
-    console.log("Token from store");
-    console.log(this.$store.state.user.token);
-    console.log(this.$store.state.user.email);
-  }
 };
 </script>

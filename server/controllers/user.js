@@ -9,20 +9,19 @@ function signUp (req,res) {
     const user = new User({
         // userRol: req.body.userRol,
         // displayName: req.body.displayName,
-        name: req.body.name,
+        userName: req.body.userName,
         // surName: req.body.surName,
         // userNameId: req.body.userNameId,
-        country: req.body.country,
+        // country: req.body.country,
         email: req.body.email,
         password: req.body.password
     })
-    console.log(user);
+
     user.save((err) =>{
-        console.log("inside save user");
         if (err) res.status(500).send({message: `Error al crear el usuario: ${err}`, error: true})
 
         //return res.status(200).send({ token: service.createToken(user)})
-        return res.status(200).send({ message: 'Usuario registrado correctamente2', status: 'ok', user: user})
+        return res.status(200).send({ message: 'Usuario registrado correctamente', status: 'ok'})
     })
 }
 
@@ -32,23 +31,24 @@ function signIn(req,res) {
 
         if (!user) return res.status(404).send({message: 'No existe el usuario'})
 
-        const userInfo={
+        req.user= user
+        res.status(200).send({
             message: 'Logueado correctamente',
             token: service.createToken(user),
             email: user.email,
-            name : user.name
-        }
+            userName : user.userName
+        })
     })
 }
 function updateUser(req,res) {
     let UserId = req.params.UserId
     let update = req.body
-   
+
     User.findByIdAndUpdate(UserId, update, (err,userUpdated)=>{
        if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
-   
+
        res.status(200).send({ user: userUpdated})
-   
+
     })
 }
 
