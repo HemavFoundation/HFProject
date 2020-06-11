@@ -10,7 +10,7 @@
               </v-toolbar>
               <v-card-text>
                 <v-form v-on:submit="register">
-                  <v-text-field label="Write your name" name="name" id="name"  type="text" />
+                  <v-text-field label="Write your name" name="userName" id="userName"  type="text" />
                   <v-text-field label="Write your surname" name="surName" id="surName"  type="text" />
                   <v-text-field label="Write your email" name="email" id="email" type="text" />
                   <v-text-field label="Write your password" id="password" name="password" type="password"/>
@@ -40,14 +40,14 @@ export default {
   methods: {    
             register: () => {    
                 let email = document.getElementById("email").value;
-                let name = document.getElementById("name").value;
+                let userName = document.getElementById("userName").value;
                 let surName = document.getElementById("surName").value;
                 let userNameId = document.getElementById("userNameId").value;
                 let password = document.getElementById("password").value;
                 let register = () => {
                     let data = {
                         email: email,
-                        name: name,
+                        userName: userName,
                         surName: surName,
                         userNameId: userNameId,
                         password: password

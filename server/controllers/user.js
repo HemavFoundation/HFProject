@@ -9,7 +9,7 @@ function signUp (req,res) {
     const user = new User({
         // userRol: req.body.userRol,
         // displayName: req.body.displayName,
-        name: req.body.name,
+        userName: req.body.userName,
         // surName: req.body.surName,
         // userNameId: req.body.userNameId,
         // country: req.body.country,
@@ -36,19 +36,19 @@ function signIn(req,res) {
             message: 'Logueado correctamente',
             token: service.createToken(user),
             email: user.email,
-            name : user.name
+            userName : user.userName
         })
     })
 }
 function updateUser(req,res) {
     let UserId = req.params.UserId
     let update = req.body
-   
+
     User.findByIdAndUpdate(UserId, update, (err,userUpdated)=>{
        if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
-   
+
        res.status(200).send({ user: userUpdated})
-   
+
     })
 }
 

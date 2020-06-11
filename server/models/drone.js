@@ -3,12 +3,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const DroneSchema = Schema ({
-    IDplate: String,
+    IdPlate: String,
     Manufacturer: String,
-    Madedate: { type:Number, default: 0},
+    MadeDate: { type:Number, default: 0},
     Owner: String,
-    Personincharge: String,
-    Pilotsassigned: String,
+    PersonInCharge: String,
+    PilotsAssigned: String,
     Country: String,
 })
 
