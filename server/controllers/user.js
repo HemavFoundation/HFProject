@@ -39,11 +39,22 @@ function signIn(req,res) {
             name : user.name
         })
     })
-    // res.send('hola')
+}
+function updateUser(req,res) {
+    let UserId = req.params.UserId
+    let update = req.body
+   
+    User.findByIdAndUpdate(UserId, update, (err,userUpdated)=>{
+       if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
+   
+       res.status(200).send({ user: userUpdated})
+   
+    })
 }
 
 
 module.exports = {
     signUp,
     signIn,
+    updateUser
 }
