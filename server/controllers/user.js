@@ -10,11 +10,11 @@ function signUp (req,res) {
         // userRol: req.body.userRol,
         // displayName: req.body.displayName,
         userName: req.body.userName,
-        // surName: req.body.surName,
-        // userNameId: req.body.userNameId,
-        // country: req.body.country,
+        surName: req.body.surName,
+        userNameId: req.body.userNameId,
+        country: req.body.country,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
     })
 
     user.save((err) =>{
@@ -36,15 +36,19 @@ function signIn(req,res) {
             message: 'Logueado correctamente',
             token: service.createToken(user),
             email: user.email,
-            userName : user.userName
+            userName : user.userName,
+            surName: user.surName,
+            userNameId: user.userNameId,
+            country: user.country,
+            userDBId: user.id
         })
     })
 }
 function updateUser(req,res) {
-    let UserId = req.params.UserId
+    let userDBId = req.params.userDBId
     let update = req.body
 
-    User.findByIdAndUpdate(UserId, update, (err,userUpdated)=>{
+    User.findByIdAndUpdate(userDBId, update, (err,userUpdated)=>{
        if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
 
        res.status(200).send({ user: userUpdated})
@@ -52,9 +56,20 @@ function updateUser(req,res) {
     })
 }
 
+function getUserId(req, res) {
+    let user_id = req.params.id;
+    User.findOne({'_id': user_id}, (err, user) => {
+        if(err) {
+            return res.json(err);
+        }
+        return res.json(user);
+    })
+}
+
 
 module.exports = {
     signUp,
     signIn,
-    updateUser
+    updateUser,
+    getUserId
 }

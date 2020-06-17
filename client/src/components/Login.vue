@@ -81,7 +81,9 @@ export default {
       setUserPassword: "user/setUserPassword",
       setEmail: "user/setEmail",
       setToken: "user/setToken",
-      setCountry: "user/setCountry"
+      setCountry: "user/setCountry",
+      setUserNameId: "user/setUserNameId",
+      setUserDBId: "user/setUserDBId"
     }),
     login() {
       let email = document.getElementById("email").value;
@@ -94,11 +96,14 @@ export default {
         .post("http://localhost:3001/api/signin", userData)
         .then(response => {
           //Declaring all data from user that will be stored on the app
+          console.log(response.data);
           const token = response.data.token;
           const email = response.data.email;
           const userName = response.data.userName;
           const surName = response.data.surName;
           const country = response.data.country;
+          const userNameId = response.data.userNameId;
+          const userDBId = response.data.userDBId;
           //Saving the data into the vuex store
           this.token = token;
           this.setToken(token);
@@ -110,6 +115,10 @@ export default {
           this.setUserSurName(surName);
           this.country = country;
           this.setCountry(country);
+          this.userNameId = userNameId;
+          this.setUserNameId(userNameId);
+          this.userDBId = userDBId;
+          this.setUserDBId(userDBId);
           if (token) {
             this.$router.push("/Status");
           } else {

@@ -4,7 +4,9 @@ const state = {
   password: '',
   token: '',
   email: '',
-  country: ''
+  country: '',
+  userNameId: '',
+  userDBId: '',
 }
 
 const actions = {
@@ -25,7 +27,13 @@ const actions = {
   },
   setCountry({commit}, country) {
     commit('SET_COUNTRY', country)
-  }
+  },
+  setUserNameId({commit}, userNameId) {
+    commit('SET_USERNAMEID', userNameId)
+  },
+  setUserDBId({commit}, userDBId) {
+    commit('SET_USERDBID', userDBId)
+  },
 }
 
 const mutations = {
@@ -46,6 +54,12 @@ const mutations = {
   },
   SET_COUNTRY(state, country) {
     state.country = country
+  },
+  SET_USERNAMEID(state, userNameId) {
+    state.userNameId = userNameId
+  },
+  SET_USERDBID(state, userDBId) {
+    state.userDBId = userDBId
   }
 }
 
@@ -68,6 +82,12 @@ const getters = {
   getCountry(state) {
     return state.country
   },
+  getUserNameId(state) {
+    return state.userNameId
+  },
+  getUserDBId(state) {
+    return state.userDBId
+  }
 }
 
 export default {
