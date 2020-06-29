@@ -20,11 +20,12 @@
     "crypto": "^1.0.1",
     "express": "^4.17.1",
     "jwt-simple": "^0.5.6",
-    "moment": "^2.24.0",
-    "mongodb": "^3.5.5",
-    "mongoose": "^5.9.7"
+    "moment": "^2.27.0",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.20",
+    "serialport": "^9.0.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.4"
   }
 }
