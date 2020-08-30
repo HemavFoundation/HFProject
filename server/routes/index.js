@@ -4,6 +4,7 @@ const droneCtrl = require('../controllers/drone')
 const flightCtrl = require('../controllers/flight')
 const express = require('express')
 const userCtrl=require('../controllers/user')
+const usbCtrl = require('../services/usb')
 const auth = require('../middlewares/auth')
 const api = express.Router()
 
@@ -13,7 +14,9 @@ const api = express.Router()
 //rutas autenticación
 api.post('/signup',userCtrl.signUp)
 api.post('/signin',userCtrl.signIn)
-api.put('/updateUser', userCtrl.updateUser)
+api.put('/updateUser/:userDBId', userCtrl.updateUser)
+
+api.post('/readJSON',usbCtrl.updateInfoClick)
 
 //rutas dron
 api.get('/drone',droneCtrl.getDrones)

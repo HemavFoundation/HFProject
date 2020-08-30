@@ -3,6 +3,7 @@
 const mongoose = require ('mongoose')
 const User = require ('../models/user')
 const service = require('../services')
+const user = require('../models/user')
 
 //no creamos un password porque como vemos en el user.js ya tenemos una funcion de mongoose que presalva la contra hasheada
 function signUp (req,res) {
@@ -15,6 +16,7 @@ function signUp (req,res) {
         country: req.body.country,
         email: req.body.email,
         password: req.body.password,
+
     })
 
     user.save((err) =>{
@@ -48,28 +50,30 @@ function updateUser(req,res) {
     let userDBId = req.params.userDBId
     let update = req.body
 
+    mongoose.set('useFindAndModify', false); //para evitar el deprecation warning
+
     User.findByIdAndUpdate(userDBId, update, (err,userUpdated)=>{
        if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
 
        res.status(200).send({ user: userUpdated})
-
+    
     })
 }
 
-function getUserId(req, res) {
-    let user_id = req.params.id;
-    User.findOne({'_id': user_id}, (err, user) => {
-        if(err) {
-            return res.json(err);
-        }
-        return res.json(user);
-    })
-}
+// function getUserId(req) {
+//     let userID = res.body.id;
+//     User.findOne({'_id': user_id}, (err, userID) => {
+//         if(err) {
+//             return res.json(err);
+//         }
+//         return res.json(userID);
+//     })
+// }
 
 
 module.exports = {
     signUp,
     signIn,
     updateUser,
-    getUserId
+    //getUserId
 }
