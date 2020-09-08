@@ -53,15 +53,16 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import axios from "axios";
+
 export default {
   name: "Login",
   data() {
     return {
       token: null,
-      name: null,
+      //userName: null,
       surName: null,
       email: null,
-      country: null
+      country: null,
     };
   },
   computed: {
@@ -70,8 +71,8 @@ export default {
       userEmail: "user/getEmail",
       userName: "user/getUserName",
       userSurName: "user/getSurName",
-      userCountry: "user/getCountry"
-    })
+      userCountry: "user/getCountry",
+    }),
   },
   methods: {
     //call actions from the store
@@ -83,27 +84,27 @@ export default {
       setToken: "user/setToken",
       setCountry: "user/setCountry",
       setUserNameId: "user/setUserNameId",
-      setUserDBId: "user/setUserDBId"
+      setUserDBId: "user/setUserDBId",
     }),
     login() {
       let email = document.getElementById("email").value;
       let password = document.getElementById("password").value;
       const userData = {
         email: email,
-        password: password
+        password: password,
       };
       axios
         .post("http://localhost:3001/api/signin", userData)
-        .then(response => {
+        .then((response) => {
           //Declaring all data from user that will be stored on the app
           console.log(response.data);
-          const token = response.data.token;
-          const email = response.data.email;
-          const userName = response.data.userName;
-          const surName = response.data.surName;
-          const country = response.data.country;
-          const userNameId = response.data.userNameId;
-          const userDBId = response.data.userDBId;
+          var token = response.data.token;
+          var email = response.data.email;
+          var userName = response.data.userName;
+          var surName = response.data.surName;
+          var country = response.data.country;
+          var userNameId = response.data.userNameId;
+          var userDBId = response.data.userDBId;
           //Saving the data into the vuex store
           this.token = token;
           this.setToken(token);
@@ -125,7 +126,7 @@ export default {
             confirm("Something went wrong, please try again");
           }
         });
-    }
+    },
   },
 };
 </script>

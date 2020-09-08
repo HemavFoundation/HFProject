@@ -6,11 +6,11 @@
       <v-card-title class="headline">Drone details</v-card-title>
       <v-row class="row-bottom-margin">
         <v-card-title>ID Plate</v-card-title>
-        <v-col>
+        <v-col cols="12" sm="6" md="1">
           <div class="my-2">
             <v-btn small disabled></v-btn>
           </div>
-        </v-col>
+          </v-col>
       </v-row>
       <v-row class="row-bottom-margin">
         <v-card-title>Manufacturer</v-card-title>
@@ -33,7 +33,7 @@
     <v-card class="my-2">
         <v-card-title>Flights list</v-card-title>
     <v-data-table :headers="headers" :items="flights" :items-per-page="5" class="elevation-1">
-      <template v-slot:item.flightInfo="props">
+      <template>
         <v-btn class="my-2" small color="primary" @click="onButtonClick(props.item)">Flight details</v-btn>
       </template>
       <!-- <template slot="headers" slot-scope="props">
@@ -126,6 +126,6 @@ export default {
   align-items: center !important;
 }
 .row-bottom-margin {
-  margin-bottom: -15px;
+  margin-bottom: -30px;
 }
 </style>
