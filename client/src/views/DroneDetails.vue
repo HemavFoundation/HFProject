@@ -3,28 +3,28 @@
     <Header />
     <Navbar />
     <v-card color="#385F73" dark>
-      <v-card-title class="headline">Drone details</v-card-title>
+      <v-card-title class="headline" style="margin-bottom:-30px;">Drone details</v-card-title>
       <v-row class="row-bottom-margin">
         <v-card-title>ID Plate</v-card-title>
         <v-col cols="12" sm="6" md="1">
           <div class="my-2">
-            <v-btn small disabled></v-btn>
+            <v-text-field/>
           </div>
           </v-col>
       </v-row>
       <v-row class="row-bottom-margin">
         <v-card-title>Manufacturer</v-card-title>
-        <v-col cols="12" sm="6" md="3">
+        <v-col cols="12" sm="6" md="1">
           <div class="my-2">
-            <v-btn small disabled></v-btn>
+            <v-text-field/>
           </div>
         </v-col>
       </v-row>
       <v-row class="row-bottom-margin">
         <v-card-title>Date</v-card-title>
-        <v-col cols="12" sm="6" md="3">
+        <v-col cols="12" sm="6" md="1">
           <div class="my-2">
-            <v-btn small disabled></v-btn>
+            <v-text-field/>
           </div>
         </v-col>
       </v-row>
@@ -32,33 +32,8 @@
     </br>
     <v-card class="my-2">
         <v-card-title>Flights list</v-card-title>
-    <v-data-table :headers="headers" :items="flights" :items-per-page="5" class="elevation-1">
-      <template>
-        <v-btn class="my-2" small color="primary" @click="onButtonClick(props.item)">Flight details</v-btn>
-      </template>
-      <!-- <template slot="headers" slot-scope="props">
-    <tr>
-          <th v-for="headers in props.headers" :key="headers.value">
-            {{ headers.value }}
-          </th>
-        </tr>
-      </template>
-      <template slot="drones" slot-scope="props">
-        <tr>
-          <td v-for="drones in props.drones" :key="drones.value">
-            <v-edit-dialog lazy>
-              {{ drones.value }}
-              <v-text-field
-                :value="drones.value"
-                single-line
-                counter>
-              </v-text-field>
-            </v-edit-dialog>
-          </td>
-        </tr>
-      </template>-->
-    </v-data-table>
     </v-card>
+      <data-table tableEntry="dronedetails"/>
   </div>
 </template>
 
@@ -67,51 +42,14 @@
 import Navbar from "@/components/Navbar.vue";
 import Header from "@/components/Header.vue";
 import axios from "axios";
+import dataTable from '@/components/DroneDetailsTable.vue'
 
 export default {
   name: "DroneDetails",
-  data() {
-    return {
-      headers: [
-        {
-          text: "Flight ID",
-          align: "start",
-          sortable: false,
-          value: "flightId"
-        },
-        { text: "Date", value: "date" },
-        { text: "Time", value: "time" },
-        { text: "Home coords", value: "homeCoords" },
-        { text: "Region flown", value: "regionFlown" },
-        { text: "Flight type", value: "flightType" },
-        { text: "Flight time", value: "flightTime" },
-        { text: "", value: "flightInfo", sortable: false }
-      ],
-      flights: [
-        {
-          flightId: 1,
-          date: "16/07/2020",
-          time: "421",
-          homeCoords: "39 71 45 32",
-          regionFlown: "Mauritania",
-          flightType: "Radar",
-          flightTime: "453"
-        },
-        {
-          flightId: 2,
-          date: "16/07/2020",
-          time: "421",
-          homeCoords: "39 71 45 32",
-          regionFlown: "Mauritania",
-          flightType: "Radar",
-          flightTime: "453"
-        }
-      ]
-    };
-  },
   components: {
     Navbar,
-    Header
+    Header,
+    dataTable
   }
 };
 </script>
@@ -126,6 +64,6 @@ export default {
   align-items: center !important;
 }
 .row-bottom-margin {
-  margin-bottom: -30px;
+  margin-bottom: -70px;
 }
 </style>

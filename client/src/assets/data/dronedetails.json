@@ -1,0 +1,20 @@
+[
+    {
+      "flightId": 1,
+      "date": "16/07/2020",
+      "time": "421",
+      "homeCoords": "39 71 45 32",
+      "regionFlown": "Mauritania",
+      "flightType": "Radar",
+      "flightTime": "453"
+    },
+    {
+        "flightId": 2,
+        "date": "16/07/2020",
+        "time": "421",
+        "homeCoords": "39 71 45 32",
+        "regionFlown": "Mauritania",
+        "flightType": "Radar",
+        "flightTime": "453"
+    }
+  ]
