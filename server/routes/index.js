@@ -14,9 +14,13 @@ const api = express.Router()
 //rutas autenticación
 api.post('/signup',userCtrl.signUp)
 api.post('/signin',userCtrl.signIn)
-api.put('/updateUser/:userDBId', userCtrl.updateUser)
+
+api.put('/updateUser/:userDBId',auth, userCtrl.updateUser)
 
 api.post('/readJSON',usbCtrl.updateInfoClick)
+
+
+
 
 //rutas dron
 api.get('/drone',droneCtrl.getDrones)
