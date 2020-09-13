@@ -17,9 +17,11 @@
            <td>{{ props.item.LastFlight }}</td>
         </template>
         <template v-slot:item.droneInfo>
+          <router-link to="dronedetails">
         <v-btn class="my-2" small color="primary" @click="onButtonClick(props.item)">
           Go to drone info
         </v-btn>
+        </router-link>
       </template>
        </v-data-table>
     </div>

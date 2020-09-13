@@ -31,8 +31,12 @@
     </v-card>
     </br>
     <v-card class="my-2">
-        <v-card-title>Flights list</v-card-title>
+            <v-tabs>
+      <v-tab>Flights list</v-tab>
+      <v-tab to="/uploadFlights"><v-btn depressed color="primary" style="color:white;">Upload flights</v-btn></v-tab>
+    </v-tabs>
     </v-card>
+    <!-- DroneDetails table component -->
       <data-table tableEntry="dronedetails"/>
   </div>
 </template>
@@ -65,5 +69,9 @@ export default {
 }
 .row-bottom-margin {
   margin-bottom: -70px;
+}
+
+.v-btn_white-content{
+  color: white;
 }
 </style>

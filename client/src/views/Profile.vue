@@ -10,7 +10,7 @@
 
             <div class="subtitle-1 font-weight-light">Complete your profile</div>
           </template>
-
+        <v-alert type="success" :value="alert" v-model="alert">Information updated, please, log-in again</v-alert>
           <v-form>
             <v-container class="py-0">
               <v-row>
@@ -109,6 +109,7 @@ export default {
   data() {
     return {
       loading: false,
+      alert: false,
       form: {
         userName: this.$store.state.user.userName,
         surName: this.$store.state.user.surName,
@@ -128,7 +129,8 @@ export default {
       setEmail: "user/setEmail",
       setToken: "user/setToken",
       setCountry: "user/setCountry",
-      setUserNameId: "user/setUserNameId"
+      setUserNameId: "user/setUserNameId",
+      setUserPassword: "user/setUserPassword"
     }),
     updateInfo() {
       let userName = document.getElementById("userName").value;
@@ -172,11 +174,11 @@ export default {
           this.setCountry(country);
           this.userNameId = userNameId;
           this.setUserNameId(userNameId);
-          if (token) {
-            <v-alert type="success">Information updated</v-alert>;
-          } else {
-            confirm("Something went wrong, please try again");
-          }
+          //Activate the alert that everything went well
+          this.alert=true
+          //After x seconds re-login is required
+          setTimeout(()=>{this.$router.push("/")}, 3000)
+            
         });
     }
   }

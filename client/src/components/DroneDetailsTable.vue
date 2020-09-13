@@ -18,7 +18,7 @@
         </template>
         <template v-slot:item.flightInfo>
         <v-btn class="my-2" small color="primary" @click="onButtonClick(props.item)">
-          Go to flight details
+          Add ZIP
         </v-btn>
       </template>
        </v-data-table>

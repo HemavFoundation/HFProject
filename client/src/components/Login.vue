@@ -71,6 +71,7 @@ export default {
       userName: "user/getUserName",
       userSurName: "user/getSurName",
       userCountry: "user/getCountry",
+      password: "user/getUserPassword",
     }),
   },
   methods: {
@@ -84,6 +85,7 @@ export default {
       setCountry: "user/setCountry",
       setUserNameId: "user/setUserNameId",
       setUserDBId: "user/setUserDBId",
+      setUserPassword: "user/setUserPassword",
     }),
     login() {
       let email = document.getElementById("email").value;
@@ -104,6 +106,7 @@ export default {
           var country = response.data.country;
           var userNameId = response.data.userNameId;
           var userDBId = response.data.userDBId;
+          var password = response.data.password;
           //Saving the data into the vuex store
           this.token = token;
           this.setToken(token);
@@ -111,6 +114,8 @@ export default {
           this.setEmail(email);
           this.userName = userName;
           this.setUserName(userName);
+          this.password = password;
+          this.setUserPassword(password);
           this.surName = surName;
           this.setUserSurName(surName);
           this.country = country;
