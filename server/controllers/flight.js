@@ -79,12 +79,12 @@ function storeJSON (req,res){
     const fs = require('fs');
     let flightData = fs.readFileSync('/ejemploJSON.json');  
     let flights = JSON.parse(flightData);  
-    console.log(flights); 
-    let flight = new Flight()
-    flight.IDplate = req.body.IDplate
-    flight.Date=req.body.Date
-    flight.Time=req.body.Time
-    flight.Homecoordinates = req.body.Homecoordinates
+    // console.log(flights); 
+    // let flight = new Flight()
+    // flights.IDplate = req.body.IDplate
+    // flights.Date=req.body.Date
+    // flights.Time=req.body.Time
+    // flights.Homecoordinates = req.body.Homecoordinates
 
 //    flight.save((err, flightStored)  => {
 //        if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
@@ -95,15 +95,11 @@ function storeJSON (req,res){
 //            token: services.createToken(flight.IDplate),})
 //    })
 // Insert JSON straight into MongoDB
-    db.collection('flights').insert(req.body, function (err, res) {
-        if (err)
-            res.send('Error');
-        else
-        res.status(200).send({
-                       flight: flightStored,
-                       message: 'Json con flight details guardado correctamente',
-                       token: services.createToken(flight.IDplate),})
-               })
+    db.collection('flights').insert(flights, function (err, res) {
+        if (err) res.status(500).send({message: `Error al crear el vuelo: ${err}`, error: true})
+
+        //return res.status(200).send({ token: service.createToken(user)})
+        return res.status(200).send({ message: 'Vuelo registrado correctamente', status: 'ok'})
 
 });
 }
