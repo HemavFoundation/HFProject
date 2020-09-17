@@ -60,20 +60,9 @@ function updateUser(req,res) {
     })
 }
 
-// function getUserId(req) {
-//     let userID = res.body.id;
-//     User.findOne({'_id': user_id}, (err, userID) => {
-//         if(err) {
-//             return res.json(err);
-//         }
-//         return res.json(userID);
-//     })
-// }
-
 
 module.exports = {
     signUp,
     signIn,
     updateUser,
-    //getUserId
 }

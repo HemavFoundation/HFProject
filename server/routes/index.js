@@ -4,7 +4,6 @@ const droneCtrl = require('../controllers/drone')
 const flightCtrl = require('../controllers/flight')
 const express = require('express')
 const userCtrl=require('../controllers/user')
-const usbCtrl = require('../services/usb')
 const auth = require('../middlewares/auth')
 const api = express.Router()
 
@@ -17,7 +16,6 @@ api.post('/signin',userCtrl.signIn)
 
 api.put('/updateUser/:userDBId',auth, userCtrl.updateUser)
 
-api.post('/readJSON',usbCtrl.updateInfoClick)
 
 
 
@@ -29,7 +27,9 @@ api.post('/drone',auth,droneCtrl.saveDrone) // debo usar la autenticación (Auth
 api.put('/drone/:droneId',auth, droneCtrl.updateDrone)
 api.delete('/drone/:droneId',auth, droneCtrl.deleteDrone)
 
-api.post('/flight',flightCtrl.createFlightDetails)
-api.get('/flight',auth,flightCtrl.getFlight)
+//rutas vuelos
+api.post('/flight',flightCtrl.storeJSON)
+// api.post('/flight',flightCtrl.createFlightDetails)
+// api.get('/flight',auth,flightCtrl.getFlight)
 
 module.exports = api

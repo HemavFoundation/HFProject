@@ -5,6 +5,8 @@ const services = require('../services')
 
 const Drone = require('../models/drone')
 
+
+
 //devulve la info de un vuelo
 function getFlight (req,res) {
     let FlightId = req.params.FlightId
@@ -70,8 +72,46 @@ function getFlightDetails(req,res,next){
 
         })
 }
+
+
+//test con random json
+function storeJSON (req,res){
+    const fs = require('fs');
+    let flightData = fs.readFileSync('/ejemploJSON.json');  
+    let flights = JSON.parse(flightData);  
+    console.log(flights); 
+    let flight = new Flight()
+    flight.IDplate = req.body.IDplate
+    flight.Date=req.body.Date
+    flight.Time=req.body.Time
+    flight.Homecoordinates = req.body.Homecoordinates
+
+//    flight.save((err, flightStored)  => {
+//        if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
+  
+//        res.status(200).send({
+//            flight: flightStored,
+//            message: 'Json con flight details guardado correctamente',
+//            token: services.createToken(flight.IDplate),})
+//    })
+// Insert JSON straight into MongoDB
+    db.collection('flights').insert(req.body, function (err, res) {
+        if (err)
+            res.send('Error');
+        else
+        res.status(200).send({
+                       flight: flightStored,
+                       message: 'Json con flight details guardado correctamente',
+                       token: services.createToken(flight.IDplate),})
+               })
+
+});
+}
+
+
 module.exports = {
     getFlight,
     createFlightDetails,
-    getFlightDetails
+    getFlightDetails,
+    storeJSON
 }
