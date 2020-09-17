@@ -26,6 +26,7 @@ api.get('/drone/:droneId', droneCtrl.getDrone)
 api.post('/drone',auth,droneCtrl.saveDrone) // debo usar la autenticación (Auth) para guardar un dron
 api.put('/drone/:droneId',auth, droneCtrl.updateDrone)
 api.delete('/drone/:droneId',auth, droneCtrl.deleteDrone)
+api.post('/drone',auth,droneCtrl.createDroneJSON)
 
 //rutas vuelos
 api.post('/flight',flightCtrl.storeJSON)

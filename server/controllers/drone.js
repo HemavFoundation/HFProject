@@ -70,10 +70,26 @@ function deleteDrone (req,res){
 }
 
 
+//funcion que crea un JSON con los campos del create a dron para enviarselo a la raspi del dron (estando conectada por usb)
+function createDroneJSON(req,res){
+    let drone = new Drone()
+    drone.IDplate = req.body.IDplate
+    drone.Manufacturer =req.body.Manufacturer
+    drone.Madedate = req.body.Madedate
+    drone.Owner = req.body.Owner
+    drone.Personincharge = req.body.Personincharge
+    drone.Pilotassigned = req.body.Pilotassigned
+    drone.Country = req.body.Country
+ 
+ res.json(drone)
+ //la dirección de la raspi se hace en back o en front?
+}
+
 module.exports = {
     getDrone,
     getDrones,
     saveDrone,
     updateDrone,
-    deleteDrone
+    deleteDrone,
+    createDroneJSON
 }
