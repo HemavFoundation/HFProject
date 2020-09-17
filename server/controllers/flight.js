@@ -81,7 +81,6 @@ function storeJSON (req,res){
 
 module.exports = {
     getFlight,
-    createFlightDetails,
     getFlightDetails,
     storeJSON
 }
