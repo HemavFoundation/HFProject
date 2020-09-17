@@ -16,11 +16,32 @@
            <td>{{ props.item.flightType }}</td>
            <td>{{ props.item.flightTime }}</td>
         </template>
-        <template v-slot:item.flightInfo>
-        <v-btn class="my-2" small color="primary" @click="onButtonClick(props.item)">
-          Go to flight details
-        </v-btn>
-      </template>
+<template v-slot:item.addZip>
+      <v-dialog v-model="dialog" persistent max-width="600px">
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" style="color:white;" v-bind="attrs" v-on="on">Add ZIP</v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="headline">Add drone ZIP</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-file-input chips type="file" accept=".zip,.rar" label="File input" required></v-file-input>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="primary" text @click="dialog = false">Close</v-btn>
+                <v-btn color="primary" text @click="dialog = false">Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          </template>
        </v-data-table>
     </div>
 </template>
@@ -34,6 +55,7 @@ export default {
     jsonData,
     data: function() {
         return{
+        dialog: false,
         headers:[
             { text: "Date", value: "date" },
             { text: "Time", value: "time" },
@@ -41,7 +63,7 @@ export default {
             { text: "Region flown", value: "regionFlown" },
             { text: "Flight type", value: "flightType" },
             { text: "Flight time", value: "flightTime" },
-            { text: "", value: "flightInfo", sortable: false }
+            { text: "", value: "addZip", sortable: false }
         ]
       }
     },

@@ -6,7 +6,6 @@
       <router-link to="RegisterDrone">
       <v-btn depressed small color="primary" class="droneListMarginLeft">Create a drone</v-btn>
       </router-link>
-      <v-btn depressed small color="primary" class="droneListMarginLeft">Upload drone data</v-btn>
     </div>
   <data-table tableEntry="dronelist"/>
   </div>
