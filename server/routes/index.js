@@ -5,6 +5,7 @@ const flightCtrl = require('../controllers/flight')
 const express = require('express')
 const userCtrl=require('../controllers/user')
 const auth = require('../middlewares/auth')
+const rockblock = require('../controllers/rockblock')
 const api = express.Router()
 
 
@@ -24,5 +25,8 @@ api.delete('/drone/:droneId',auth, droneCtrl.deleteDrone)
 
 api.post('/flight',flightCtrl.createFlightDetails)
 api.get('/flight',auth,flightCtrl.getFlight)
+
+//rockblock
+api.post("/recieveLocation", rockblock.recieveLocation)
 
 module.exports = api
