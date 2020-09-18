@@ -25,25 +25,27 @@ function getDrones (req,res) {
 }
 //guarda un dron en la BD
 function saveDrone (req,res) {
- console.log('POST /api/drone')
- console.log(req.body)
 
- let drone = new Drone()
- drone.IDplate = req.body.IDplate
- drone.Manufacturer =req.body.Manufacturer
- drone.Madedate = req.body.Madedate
- drone.Owner = req.body.Owner
- drone.Personincharge = req.body.Personincharge
- drone.Pilotassigned = req.body.Pilotassigned
- drone.Country = req.body.Country
+ const drone = new Drone({
+    IdPlate:req.body.IdPlate,
+    Manufacturer:req.body.Manufacturer,
+    Madedate:req.body.Madedate,
+    Owner:req.body.Owner,
+    Personincharge:req.body.Personincharge,
+    Pilotassigned:req.body.Pilotassigned,
+    Country:req.body.Country,
+   
+ })
 
 
- drone.save((err, droneStored)  => {
+ drone.save((err)  => {
      if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
 
-     res.status(200).send({drone: droneStored})
+     return res.status(200).send({message: "Dron guardado correctamente en la bd",status:'ok'})
  })
 }
+
+
 function updateDrone(req,res) {
     let droneId = req.params.droneId
     let update = req.body
@@ -70,26 +72,12 @@ function deleteDrone (req,res){
 }
 
 
-//funcion que crea un JSON con los campos del create a dron para enviarselo a la raspi del dron (estando conectada por usb)
-function createDroneJSON(req,res){
-    let drone = new Drone()
-    drone.IDplate = req.body.IDplate
-    drone.Manufacturer =req.body.Manufacturer
-    drone.Madedate = req.body.Madedate
-    drone.Owner = req.body.Owner
-    drone.Personincharge = req.body.Personincharge
-    drone.Pilotassigned = req.body.Pilotassigned
-    drone.Country = req.body.Country
- 
- res.json(drone)
- //la dirección de la raspi se hace en back o en front?
-}
+
 
 module.exports = {
     getDrone,
     getDrones,
     saveDrone,
     updateDrone,
-    deleteDrone,
-    createDroneJSON
+    deleteDrone
 }
