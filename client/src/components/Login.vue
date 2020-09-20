@@ -85,7 +85,6 @@ export default {
       setCountry: "user/setCountry",
       setUserNameId: "user/setUserNameId",
       setUserDBId: "user/setUserDBId",
-      setUserPassword: "user/setUserPassword",
     }),
     login() {
       let email = document.getElementById("email").value;

@@ -52,9 +52,11 @@
                   <v-text-field
                     v-model="form.password"
                     label="Change your password"
+                    class="purple-input"
                     name="password"
                     id="password"
-                    counter
+                    
+                    
                   ></v-text-field>
                 </v-col>
 
@@ -130,7 +132,6 @@ export default {
       setToken: "user/setToken",
       setCountry: "user/setCountry",
       setUserNameId: "user/setUserNameId",
-      setUserPassword: "user/setUserPassword"
     }),
     updateInfo() {
       let userName = document.getElementById("userName").value;

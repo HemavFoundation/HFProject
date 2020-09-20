@@ -39,6 +39,8 @@ function signIn(req,res) {
             token: service.createToken(user),
             email: user.email,
             userName : user.userName,
+            //debe ir el password aqui? problemas de seguridad
+            password: user.password,
             surName: user.surName,
             userNameId: user.userNameId,
             country: user.country,
