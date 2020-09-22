@@ -10,7 +10,7 @@
       <span>Center: {{ center }}</span>
       <span>Zoom: {{ zoom }}</span>
       <span>Bounds: {{ bounds }}</span>
-      <v-btn color="secondary" v-on:click="saveLatLot()">Test</v-btn>
+      <v-btn color="secondary" v-on:click="saveLatLot()">Start</v-btn>
     </div>
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
@@ -31,15 +31,18 @@ import L from 'leaflet';
 import { LMap, LTileLayer, LMarker, LRectangle, LIcon } from 'vue2-leaflet';
 import { mapActions, mapGetters, mapState } from 'vuex'
 
-const dataTest = [{lat: 50.5, lon: 30.5}, {lat: 70.5, lon: 50.5}, {lat: 90.5, lon: 70.5} ,{lat: 110.5, lon: 90.5}]
+const dataTest = [{lat: 50.5, lon: 30.5}, {lat: 70.5, lon: 50.5}, {lat: 30.5, lon: 5.5} ,{lat: 41.5, lon: 2.5}]
 
 let intervalCounter = 0
+let latitude = 0
+let longitude = 0
 const intervalId = setInterval(function() {
   // here we call recieveLocation function
+  //console.log("interval", intervalCounter)
+  latitude = dataTest[intervalCounter].lat
+  longitude = dataTest[intervalCounter].lon
   intervalCounter +=1
-  console.log("intervalCounter", intervalCounter)
-  
-}, 6 * 1000); // 60 * 1000 milsec = 1 min.
+}, 10 * 1000); // 60 * 1000 milsec = 1 min.
 console.log(intervalId)
 
 export default {
@@ -51,16 +54,20 @@ export default {
     LRectangle,
     LIcon
   },
+  beforeCreate() {
+    console.log('- BeforeCreate')
+  },
   data () {
     //console.log(this.$store.state.map) access to state to pass latitude and longitude to marker
+    console.log(this.$store.state.map.lat, this.$store.state.map.lon)
     return {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       zoom: 3,
       center: [22.917923, 20.126953],
       bounds: null,
-      marker: L.latLng(dataTest[intervalCounter].lat, dataTest[intervalCounter].lon),
+      marker: L.latLng(this.$store.state.map.lat, this.$store.state.map.lon),
       icon: L.icon({
-        iconUrl: "https://www.flaticon.com/svg/static/icons/svg/897/897097.svg",
+        iconUrl: require('../../public/img/icons/drone-map.png'),
         iconSize: [32, 37],
         iconAnchor: [16, 37]
       })
@@ -79,6 +86,10 @@ export default {
     }),
     saveLatLot() {
       console.log("function", this)
+      console.log(latitude)
+      console.log(longitude)
+      this.setLat(dataTest[intervalCounter].lat)
+      this.setLon(dataTest[intervalCounter].lon)
       //access to dataTest to save latitude and longitude
     },
     zoomUpdated (zoom) {
@@ -90,6 +101,20 @@ export default {
     boundsUpdated (bounds) {
       this.bounds = bounds;
     }
+  },
+  created() {
+    console.log('- Created')
+    console.log(this)
+    this.setLat(latitude)
+    this.setLon(longitude)
+  },
+  beforeMount() {
+    console.log(`- BeforeMount`)
+    console.log(this)
+  },
+  mounted() {
+    console.log(`- Mounted`);
+    console.log(this)
   }
 }
 </script>
