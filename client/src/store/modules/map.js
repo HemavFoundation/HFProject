@@ -5,11 +5,9 @@ const state = {
 
 const actions = {
     setLat({commit}, lat) {
-        console.log("set", lat)
         commit('SET_LATITUDE', lat)
     },
     setLon({commit}, lon) {
-        console.log("set", lon)
         commit('SET_LONGITUD', lon)
     }
 }
