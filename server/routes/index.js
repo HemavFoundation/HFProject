@@ -17,9 +17,6 @@ api.post('/signin',userCtrl.signIn)
 api.put('/updateUser/:userDBId',auth, userCtrl.updateUser)
 
 
-
-
-
 //rutas dron
 api.get('/drone',droneCtrl.getDrones)
 api.get('/drone/:droneId', droneCtrl.getDrone)
@@ -28,6 +25,6 @@ api.put('/drone/:droneId',auth, droneCtrl.updateDrone)
 api.delete('/drone/:droneId',auth, droneCtrl.deleteDrone)
 
 //rutas vuelos
-
+api.post('/flight',flightCtrl.storeJSON)
 
 module.exports = api

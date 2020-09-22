@@ -4,6 +4,7 @@ const Flight = require('../models/drone')
 const services = require('../services')
 
 const Drone = require('../models/drone')
+const { db } = require('../models/drone')
 
 
 
@@ -34,48 +35,54 @@ function getFlightDetails(req,res,next){
         res.status(response.status)
     })
     Flight.find({IDplate:respone}, (err,flight)=>{
-        if (err) return res.status(500).send({message: `Error al al hacer el get flight details: ${err}`})
+        if (err) return res.status(500).send({message: `Error al hacer el get flight details: ${err}`})
         if (!IDplate) return res.status(404).send({message: 'No existe el IDplate'})
         req.flight = flight
         res.send(200,{flight})
 
-        
-        
 
         })
 }
 
 
-//test con random json
-function storeJSON (req,res){
+//store result.json in mongo db. bool function that once recognized user id, then checks flight id one by one and stores all data in the database
+
+function storeJSON (res){
+    //results.json only for testing. Here we will have to put the usb path that the user will use.
     const fs = require('fs');
-    let flightData = fs.readFileSync('/ejemploJSON.json');  
-    let flight = JSON.parse(flightData);  
-    // console.log(flights); 
-    // let flight = new Flight()
-    // flights.IDplate = req.body.IDplate
-    // flights.Date=req.body.Date
-    // flights.Time=req.body.Time
-    // flights.Homecoordinates = req.body.Homecoordinates
-    //faltarian region flown , flight type y flight time
 
+    //see fs.readfilesync because could be better when using directory instead of results.json
+    fs.readFile('results.json',(err,data) =>{
 
-//    flight.save((err, flightStored)  => {
-//        if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
-  
-//        res.status(200).send({
-//            flight: flightStored,
-//            message: 'Json con flight details guardado correctamente',
-//            token: services.createToken(flight.IDplate),})
-//    })
+        if (err) return res.status(500).send({message: `Error al leer el json de prueba: ${err}`});
+
+        var flight = JSON.parse(data)
+        var id= flight.id;
+        var encontrado = new Boolean(false);
+        // Drone.update(
+        //     {IDPlated: id}, 
+        //     {vehicle_status : 'vehicleSatus' },
+        //     {multi:true}, 
+        //       function(err, numberAffected){  
+        //         if (err) return res.status(500).send({message: `Error al leer el json de prueba: ${err}`});
+
+        //       });
+        console.log(id);
+        //db.collection.find(id)
+        // return res.status(200).send({ message: 'JSON de prueba leido correctamente', status: 'ok'});
+         
+
+        
+    } );
+ 
 // Insert JSON straight into MongoDB
-    db.collection('flight').insert(flight, function (err, res) {
-        if (err) res.status(500).send({message: `Error al crear el vuelo: ${err}`, error: true})
+    // db.collection('flight').insert(flight, function (err, res) {
+    //     if (err) res.status(500).send({message: `Error al crear el vuelo: ${err}`, error: true})
 
-        //return res.status(200).send({ token: service.createToken(user)})
-        return res.status(200).send({ message: 'Vuelo registrado correctamente', status: 'ok'})
+    //     //return res.status(200).send({ token: service.createToken(user)})
+    //     return res.status(200).send({ message: 'Vuelo registrado correctamente', status: 'ok'})
 
-});
+// });
 }
 
 
