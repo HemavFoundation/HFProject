@@ -35,8 +35,6 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 const dataTest = [{lat: 50.5, lon: 30.5}, {lat: 70.5, lon: 50.5}, {lat: 30.5, lon: 5.5} ,{lat: 41.5, lon: 2.5}, {lat: 31.5, lon: 4.5}]
 
 let intervalCounter = 0
-let latitude = 0
-let longitude = 0
 
 export default {
   name: 'Map',
