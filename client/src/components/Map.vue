@@ -10,7 +10,8 @@
       <span>Center: {{ center }}</span>
       <span>Zoom: {{ zoom }}</span>
       <span>Bounds: {{ bounds }}</span>
-      <v-btn color="secondary" v-on:click="saveLatLot()">Start</v-btn>
+      <span>Latitude: {{ lat }}</span>
+      <span>Longitude: {{ lon }}</span>
     </div>
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
@@ -31,19 +32,11 @@ import L from 'leaflet';
 import { LMap, LTileLayer, LMarker, LRectangle, LIcon } from 'vue2-leaflet';
 import { mapActions, mapGetters, mapState } from 'vuex'
 
-const dataTest = [{lat: 50.5, lon: 30.5}, {lat: 70.5, lon: 50.5}, {lat: 30.5, lon: 5.5} ,{lat: 41.5, lon: 2.5}]
+const dataTest = [{lat: 50.5, lon: 30.5}, {lat: 70.5, lon: 50.5}, {lat: 30.5, lon: 5.5} ,{lat: 41.5, lon: 2.5}, {lat: 31.5, lon: 4.5}]
 
 let intervalCounter = 0
 let latitude = 0
 let longitude = 0
-const intervalId = setInterval(function() {
-  // here we call recieveLocation function
-  //console.log("interval", intervalCounter)
-  latitude = dataTest[intervalCounter].lat
-  longitude = dataTest[intervalCounter].lon
-  intervalCounter +=1
-}, 10 * 1000); // 60 * 1000 milsec = 1 min.
-console.log(intervalId)
 
 export default {
   name: 'Map',
@@ -55,11 +48,10 @@ export default {
     LIcon
   },
   beforeCreate() {
-    console.log('- BeforeCreate')
+    // console.log('- BeforeCreate')
+    // console.log(this.$store)
   },
   data () {
-    //console.log(this.$store.state.map) access to state to pass latitude and longitude to marker
-    console.log(this.$store.state.map.lat, this.$store.state.map.lon)
     return {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       zoom: 3,
@@ -77,21 +69,13 @@ export default {
     ...mapGetters({
       lat: "map/getLat",
       lon: "map/getLon"
-    })
+    }),
   },
   methods: {
     ...mapActions({
       setLat: "map/setLat",
       setLon: "map/setLon",
     }),
-    saveLatLot() {
-      console.log("function", this)
-      console.log(latitude)
-      console.log(longitude)
-      this.setLat(dataTest[intervalCounter].lat)
-      this.setLon(dataTest[intervalCounter].lon)
-      //access to dataTest to save latitude and longitude
-    },
     zoomUpdated (zoom) {
       this.zoom = zoom;
     },
@@ -100,21 +84,38 @@ export default {
     },
     boundsUpdated (bounds) {
       this.bounds = bounds;
+    },
+    todo: function(){
+            const self = this
+            this.intervalId = setInterval(function() {
+              // here we call recieveLocation function
+              if(intervalCounter < 5){
+                self.setLat(dataTest[intervalCounter].lat)
+                self.setLon(dataTest[intervalCounter].lon)
+                self.marker = L.latLng(self.lat, self.lon)
+              }
+
+              intervalCounter +=1
+            }, 5 * 1000); // 60 * 1000 milsec = 1 min.
+            //console.log(this.intervalId)
     }
   },
   created() {
-    console.log('- Created')
-    console.log(this)
-    this.setLat(latitude)
-    this.setLon(longitude)
+    // console.log('- Created')
+    // console.log(this)
   },
   beforeMount() {
-    console.log(`- BeforeMount`)
-    console.log(this)
+    // console.log(`- BeforeMount`)
+    // console.log(this)
   },
   mounted() {
-    console.log(`- Mounted`);
-    console.log(this)
+    // console.log(`- Mounted`);
+    // console.log(this)
+    this.todo()
+  },
+  beforeDestroy () {
+    // console.log("beforeDestroy")
+    clearInterval(this.intervalId) //kill setInterval when the component is detroyed
   }
 }
 </script>
