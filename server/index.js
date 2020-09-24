@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 const app = require('./app')
 const config = require('./config')
 
-const SocketIO = require('socket.io')
+require('./controllers/rockblock')
+
 
 mongoose.connect(config.db, {
     useNewUrlParser: true,
@@ -20,13 +21,8 @@ const server = app.listen(config.port, () => {
     console.log(`API REST corriendo en ${config.port}`)
 })
 
-const io = SocketIO(server)
+var io = require('./socketio').initialize(server);
 
 
-io.on('connection', (socket) => {
-    console.log('conectado')
 
-    socket.on('disconnect', () => {
-       console.log('desconectado')
-    }) 
-})
+
