@@ -1,3 +1,10 @@
+const { json } = require('body-parser');
+const fs = require('fs');
+const hex = require('hex-encode-decode');
+const config = require('../config')
+const socketService = require('../index')
+
+
 function recieveLocation(req, res) {
   /*
   The body of the JSON recived is:
@@ -13,8 +20,14 @@ function recieveLocation(req, res) {
   }
   */
 
-  console.log(req.body) // Call your action on the request here
-  res.status(200).end() // Responding is important
+  rawdata = fs.readFileSync(__dirname + '/rockblock.json');
+  data = JSON.parse(rawdata)
+
+  jsondata = JSON.parse(hex.decode(data.data))
+  console.log(jsondata)
+
+
+
 }
 
 module.exports = {
