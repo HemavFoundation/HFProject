@@ -5,13 +5,14 @@
         height: 500px;
         z-index: 1;
         position: relative;
-  ">
+  " id="socketMap">
     <div style="height: 5%; margin: 1rem;">
       <span>Center: {{ center }}</span>
       <span>Zoom: {{ zoom }}</span>
       <span>Bounds: {{ bounds }}</span>
       <span>Latitude: {{ lat }}</span>
       <span>Longitude: {{ lon }}</span>
+       <v-btn class="my-2" small color="secondary" @click="clickButton">Socket</v-btn>
     </div>
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
@@ -63,6 +64,15 @@ export default {
       })
     };
   },
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    customEmit: function (data) {
+      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
+      console.log(data)
+    }
+  },
   computed: {
     ...mapGetters({
       lat: "map/getLat",
@@ -96,6 +106,11 @@ export default {
               intervalCounter +=1
             }, 5 * 1000); // 60 * 1000 milsec = 1 min.
             //console.log(this.intervalId)
+    },
+    clickButton: function (data){
+      // console.log(this)
+      // console.log(data)
+      //this.$socket.emit('emit_method', data)
     }
   },
   created() {
