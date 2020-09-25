@@ -9,12 +9,12 @@ function signUp (req,res) {
     const user = new User({
         // userRol: req.body.userRol,
         // displayName: req.body.displayName,
-        // name: req.body.name,
-        // surName: req.body.surName,
-        // userNameId: req.body.userNameId,
-        // country: req.body.country,
+        userName: req.body.userName,
+        surName: req.body.surName,
+        userNameId: req.body.userNameId,
+        country: req.body.country,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
     })
 
     user.save((err) =>{
@@ -27,7 +27,6 @@ function signUp (req,res) {
 
 function signIn(req,res) {
     User.findOne({email: req.body.email, password: req.body.password}, (err, user) =>{
-        console.log(user)
         if (err) return res.status(500).send({message: err})
 
         if (!user) return res.status(404).send({message: 'No existe el usuario'})
@@ -36,14 +35,41 @@ function signIn(req,res) {
         res.status(200).send({
             message: 'Logueado correctamente',
             token: service.createToken(user),
-            email: user.email
+            email: user.email,
+            userName : user.userName,
+            surName: user.surName,
+            userNameId: user.userNameId,
+            country: user.country,
+            userDBId: user.id
         })
     })
-    // res.send('hola')
+}
+function updateUser(req,res) {
+    let userDBId = req.params.userDBId
+    let update = req.body
+
+    User.findByIdAndUpdate(userDBId, update, (err,userUpdated)=>{
+       if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
+
+       res.status(200).send({ user: userUpdated})
+
+    })
+}
+
+function getUserId(req, res) {
+    let user_id = req.params.id;
+    User.findOne({'_id': user_id}, (err, user) => {
+        if(err) {
+            return res.json(err);
+        }
+        return res.json(user);
+    })
 }
 
 
 module.exports = {
     signUp,
     signIn,
+    updateUser,
+    getUserId
 }

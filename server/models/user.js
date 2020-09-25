@@ -14,10 +14,10 @@ const UserSchema = new Schema({
     // displayName: String,
     // avatar: String,
 
-    // name: {type: String},
-    // surName: {type: String},
-    // userNameId: {type: String},
-    // country: {type: String},
+    userName: {type: String},
+    surName: {type: String},
+    userNameId: {type: String},
+    country: {type: String},
     // userRol: {type: String},
     email: {type: String, unique: true, lowercase:true},
     password: {type:String, select:false}
@@ -43,10 +43,10 @@ const UserSchema = new Schema({
 
 //usamos un metodo de mongoose que autocrea un avatar
 // UserSchema.methods.gravatar=function(){
-//     if (!this.email) return `https://gravatar.com/avatar/?s=200&d=retro`
+//     if (!this.email) return https://gravatar.com/avatar/?s=200&d=retro
 
 //     const md5 = crypto.createHash('md5').update(this.email).digest('hex')
-//     return `https://gravatar.com/avatar/${md5}?s=200&d=retro`
+//     return https://gravatar.com/avatar/${md5}?s=200&d=retro
 // }
 
 module.exports=mongoose.model('User',UserSchema)

@@ -1,0 +1,20 @@
+{
+    "drones":[
+    {
+    "idPlate": 6856484654,
+    "owner": "Hemav",
+    "pilot": "James",
+    "country": "Mauritania",
+    "state": "Ready to flight",
+    "lastFlight": "27/4/2020"
+    },
+    {
+        "idPlate": 6856484654,
+        "owner": "Hemav",
+        "pilot": "Joan",
+        "country": "Spain",
+        "state": "Ready to flight",
+        "lastFlight": "24/4/2020"
+    }
+    ]
+    }

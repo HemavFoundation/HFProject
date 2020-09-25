@@ -15,7 +15,7 @@
       <v-toolbar-title class="title">Drone Operations Management Application</v-toolbar-title>
       <v-spacer></v-spacer>
 
-      <v-toolbar-title>Hello username</v-toolbar-title>
+      <v-toolbar-title>Hello {{this.$store.state.user.userName}}</v-toolbar-title>
       <v-menu bottom left>
             <template v-slot:activator="{ on }">
               <v-btn
@@ -31,7 +31,12 @@
               <v-list-item>
                 <router-link to="profile"> 
                 <v-list-item-title>User information</v-list-item-title>
-                </router-link> 
+                </router-link>
+                </v-list-item>
+                <v-list-item>
+                  <router-link to="/">
+                <v-list-item-title>Log out</v-list-item-title>
+                </router-link>
                 </v-list-item>
             </v-list>
           </v-menu>
@@ -41,12 +46,15 @@
 
 <script>
 import { mapGetters } from 'vuex';
-
 export default {
   name: "Header",
   computed: {
     ...mapGetters({
-      userToken: 'user/getToken'
+      userToken: "user/getToken",
+      userEmail: "user/getEmail",
+      userName: "user/getUserName",
+      userSurName: "user/getSurName",
+      userCountry: "user/getCountry"
     })
   },
 };
@@ -62,4 +70,4 @@ color: white;
   left: 160px;
   color: white;
 }
-</style>>
+</style>
