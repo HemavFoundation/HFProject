@@ -54,6 +54,7 @@
                     label="Change your password"
                     name="password"
                     id="password"
+                    disabled
                     counter
                   ></v-text-field>
                 </v-col>
