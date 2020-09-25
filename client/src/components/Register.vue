@@ -15,8 +15,16 @@
                   <v-text-field label="Write your email" name="email" id="email" type="text" />
                   <v-text-field label="Write your password" id="password" name="password" type="password"/>
                   <v-text-field label="Write your ID number" name="userNameId" id="userNameId"  type="text" />
-                  <!-- <v-text-field label="Select your country" name="country" id="country"  type="text" />
-                  <v-text-field label="Select your user rol" name="userName" id="userName"  type="text" /> -->
+                  <v-select 
+                  :items="countryData"
+                  v-model="country" 
+                  item-text='name'
+                  item-value='code'
+                  return-object
+                  @change="selectedCountry"     
+                  label="Select your country" 
+                  type="text"/>
+                  {{country.name}}
                 </v-form>
               </v-card-text>
               <v-card-actions>
@@ -35,6 +43,7 @@
 <script>
 import axios from 'axios';
 import router from '../router';
+import countryData from '../assets/data/countries.json';
 export default {
   name: "Register",
   methods: {    
@@ -44,13 +53,15 @@ export default {
                 let surName = document.getElementById("surName").value;
                 let userNameId = document.getElementById("userNameId").value;
                 let password = document.getElementById("password").value;
+                let country = document.getSelection;
                 let register = () => {
                     let data = {
                         email: email,
                         userName: userName,
                         surName: surName,
                         userNameId: userNameId,
-                        password: password
+                        password: password,
+                        country: country
                     }
                     axios.post("http://localhost:3001/api/signup", data)
                     .then(function (response) {
@@ -59,7 +70,13 @@ export default {
                           })
                 }
                 register()
-            }
-        }
+            },
+        },
+  data(){
+    return {
+      countryData: countryData,
+      country:''
+    }
+  }
     }
 </script>

@@ -31,7 +31,12 @@
               <v-list-item>
                 <router-link to="profile"> 
                 <v-list-item-title>User information</v-list-item-title>
-                </router-link> 
+                </router-link>
+                </v-list-item>
+                <v-list-item>
+                  <router-link to="/">
+                <v-list-item-title>Log out</v-list-item-title>
+                </router-link>
                 </v-list-item>
             </v-list>
           </v-menu>
