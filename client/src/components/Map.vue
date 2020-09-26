@@ -1,4 +1,4 @@
-  Xº<template>
+  <template>
 
   <div style="
         width: 100%;
@@ -23,7 +23,7 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url"></l-tile-layer>
-      <l-marker :latLng="dronesMarkers" :icon="icon">
+      <l-marker v-for="marker, index in dronesMarkers" :lat-lng="marker" :icon="icon">
         <l-popup :options="{ permanent: false, interactive: true }">
            <div>
             
