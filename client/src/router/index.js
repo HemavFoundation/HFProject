@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
 import RecoverAccount from '../components/RecoverAccount.vue'
+import user from '../store/modules/user'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'Login',
@@ -61,6 +62,18 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const userJson = JSON.parse(localStorage.getItem('vuex'))
+  if (userJson != null || to.path === '/') {
+    next()
+  } else {
+    next({
+      path: '/'
+    })
+  }
+
 })
 
 export default router
