@@ -12,7 +12,7 @@
       <span>Bounds: {{ bounds }}</span>
       <span>Latitude: {{ lat }}</span>
       <span>Longitude: {{ lon }}</span>
-       <v-btn class="my-2" small color="secondary" @click="clickButton">Socket</v-btn>
+       <v-btn class="my-2" small color="secondary" @click="getLastFlightsLocations">Socket</v-btn>
     </div>
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
@@ -23,7 +23,7 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url"></l-tile-layer>
-      <l-marker :latLng="marker" :icon="icon">
+      <l-marker :latLng="droneLocations" :icon="icon">
         <l-popup :options="{ permanent: false, interactive: true }">
            <div>
             
@@ -37,11 +37,9 @@
 <script>
 import L from 'leaflet';
 import { LMap, LTileLayer, LMarker, LRectangle, LIcon, LPopup } from 'vue2-leaflet';
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapState } from 'vuex';
+import axios from "axios";
 
-const dataTest = [{lat: 50.5, lon: 30.5}, {lat: 70.5, lon: 50.5}, {lat: 30.5, lon: 5.5} ,{lat: 41.5, lon: 2.5}, {lat: 31.5, lon: 4.5}]
-
-let intervalCounter = 0
 
 export default {
   name: 'Map',
@@ -71,15 +69,6 @@ export default {
       })
     };
   },
-  sockets: {
-    connect: function () {
-      console.log('socket connected')
-    },
-    customEmit: function (data) {
-      console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
-      console.log(data)
-    }
-  },
   computed: {
     ...mapGetters({
       lat: "map/getLat",
@@ -90,6 +79,7 @@ export default {
     ...mapActions({
       setLat: "map/setLat",
       setLon: "map/setLon",
+      setDronesLocations: "map/setDronesLocations",
     }),
     zoomUpdated (zoom) {
       this.zoom = zoom;
@@ -100,7 +90,7 @@ export default {
     boundsUpdated (bounds) {
       this.bounds = bounds;
     },
-    todo: function(){
+/*     todo: function(){
             const self = this
             this.intervalId = setInterval(function() {
               // here we call recieveLocation function
@@ -113,25 +103,33 @@ export default {
               intervalCounter +=1
             }, 5 * 1000); // 60 * 1000 milsec = 1 min.
             //console.log(this.intervalId)
-    },
+    }, */
     clickButton: function (data){
       // console.log(this)
       // console.log(data)
       //this.$socket.emit('emit_method', data)
+    },
+    getLastFlightsLocations(){
+    axios
+    .get('http://localhost:3001/api/lastDronesLocations')
+    .then((response) => {
+      if (response.data.length >0){
+      const locations = response.data;
+      this.setDronesLocations(locations);
+      }
+    })
     }
   },
   created() {
-    // console.log('- Created')
-    // console.log(this)
   },
   beforeMount() {
     // console.log(`- BeforeMount`)
     // console.log(this)
   },
   mounted() {
-    // console.log(`- Mounted`);
+    console.log(`- Mounted`);
     // console.log(this)
-    this.todo()
+    this.intervalId = setInterval(this.getLastFlightsLocations, 50 * 60)
   },
   beforeDestroy () {
     // console.log("beforeDestroy")

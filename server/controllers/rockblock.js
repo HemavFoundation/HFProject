@@ -81,7 +81,7 @@ const getFlightsLocations = (req, res) => {
       lat: 41,
       log: 2,
       time: '2020_12_30',
-
+      drone_id: 'HP1',
   }])
 }
 
