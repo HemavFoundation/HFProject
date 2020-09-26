@@ -23,7 +23,7 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url"></l-tile-layer>
-      <l-marker :latLng="droneLocations" :icon="icon">
+      <l-marker :latLng="dronesMarkers" :icon="icon">
         <l-popup :options="{ permanent: false, interactive: true }">
            <div>
             
@@ -72,14 +72,15 @@ export default {
   computed: {
     ...mapGetters({
       lat: "map/getLat",
-      lon: "map/getLon"
+      lon: "map/getLon",
+      dronesMarkers: "map/getDronesMarkers"
     }),
   },
   methods: {
     ...mapActions({
       setLat: "map/setLat",
       setLon: "map/setLon",
-      setDronesLocations: "map/setDronesLocations",
+      setDronesMarkers: "map/setDronesMarkers",
     }),
     zoomUpdated (zoom) {
       this.zoom = zoom;
@@ -115,7 +116,7 @@ export default {
     .then((response) => {
       if (response.data.length >0){
       const locations = response.data;
-      this.setDronesLocations(locations);
+      this.setDronesMarkers(locations);
       }
     })
     }
