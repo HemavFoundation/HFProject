@@ -68,13 +68,6 @@ function saveLocation(req, res) {
     return res.status(200).send({ message: "Localizacion guardada correctamente en la bd", status: 'ok' })
   })
 
-  console.log(location)
-
-
-
-
-
-
 }
 
 const getFlightsLocations = (req, res) => {
