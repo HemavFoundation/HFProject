@@ -5,10 +5,10 @@ const Schema = mongoose.Schema
 const LocationSchema = Schema ({
     id_plate: String,
     time: String,
-    lat: { type:Number, default: 0},
-    lon: { type:Number, default: 0},
-    alt: { type:Number, default: 0},
-    heading: { type:Number, default: 0}
+    lat: { type:Number, default: null},
+    lon: { type:Number, default: null},
+    alt: { type:Number, default: null},
+    heading: { type:Number, default: null}
 })
 
 module.exports = mongoose.model('Location', LocationSchema)
