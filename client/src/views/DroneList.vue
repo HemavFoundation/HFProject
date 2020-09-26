@@ -28,36 +28,6 @@
           <v-card-text>
             <v-container>
               <v-row>
-                <v-col cols="12" sm="6">
-                  <v-text-field
-                    label="Date"
-                    hint="Flight date day/month/year"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-text-field
-                    label="Time"
-                    hint="In seconds"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-text-field label="Home coords" required></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-text-field label="Region Flown" required></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-text-field
-                    label="Flight type"
-                    hint="Type of flight"
-                    required
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-text-field label="Flight time" required></v-text-field>
-                </v-col>
                 <small>Instead you can upload the json file</small>
                 <v-col cols="12">
                   <v-file-input
@@ -71,12 +41,11 @@
                 </v-col>
               </v-row>
             </v-container>
-            <small>All files are required</small>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="primary" text @click="dialog = false">Close</v-btn>
-            <v-btn color="primary" text @click="importTxt">Save</v-btn>
+            <v-btn color="primary" text @click="importTxt">Upload</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -113,17 +82,15 @@ export default {
       reader.readAsText(this.chosenFile);
       reader.onload = () => {
         this.data = reader.result;
-        console.log('@@', this.data)
-        //this.fetchImport(this.data)
+        this.fetchImport(this.data)
       };
     },
     fetchImport(data) {
       axios
         .post("http://localhost:3001/api/flight", data)
         .then(function (response) {
-          console.log('@@estoyenel result')
-          this.dialog = false
-        })
+          console.log("@@ ");
+        });
     },
   },
 };
