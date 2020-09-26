@@ -27,9 +27,10 @@
       <l-marker v-for="marker, index in dronesMarkers" :lat-lng="marker" :icon="icon">
         <l-popup :options="{ permanent: false, interactive: true }">
           <div>
-            <p class="drawerDetails">Last updated:</p>
-            <p class="drawerDetails">Status:</p>
-            <p class="drawerDetails">Position:</p>
+            <p class="drawerDetails">Last updated:</p> 
+            <p class="drawerDetails">Status:</p> 
+            <!-- Status: Get lat. If lat > 10m show Flying, else show Landed -->
+            <p class="drawerDetails">Position:</p> {{ marker.lat }} - {{ marker.lon }}
           </div>
         </l-popup>
       </l-marker>
@@ -136,7 +137,7 @@ export default {
     // console.log(this)
   },
   mounted() {
-    console.log(`- Mounted`);
+    //console.log(`- Mounted`);
     // console.log(this)
     this.intervalId = setInterval(this.getLastFlightsLocations, 50 * 60);
   },
