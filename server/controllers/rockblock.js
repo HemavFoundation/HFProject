@@ -23,11 +23,10 @@ function recieveLocation(req, res) {
   // rawdata = fs.readFileSync(__dirname + '/rockblock.json');
   rawdata = req.body
   console.log("rawdata:",req.body)
-  console.log("data",data)
 
   jsondata = JSON.parse(hex.decode(rawdata.data))
 
-  time = data.transmit_time
+  time = rawdata.transmit_time
   id_plate = jsondata.drone_id
   lat = jsondata.lat
   lon = jsondata.lon
