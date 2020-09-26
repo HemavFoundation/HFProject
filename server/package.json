@@ -19,6 +19,7 @@
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "express": "^4.17.1",
+    "express-passport-logout": "^0.1.0",
     "hex-encode-decode": "^1.0.0",
     "jwt-simple": "^0.5.6",
     "moment": "^2.29.0",

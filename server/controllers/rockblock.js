@@ -48,23 +48,24 @@ function recieveLocation(req, res) {
    
 }
 
-function saveLocation (req,res){
+function saveLocation(req, res) {
   const location = new Location(
     {
-      id_plate:req.body.id_plate,
-      time:req.body.time,
-      lat:req.body.lat,
-      lon:req.body.lon,
-      alt:req.body.alt,
-      heading:req.body.heading
+      id_plate: req.body.id_plate,
+      time: req.body.time,
+      lat: req.body.lat,
+      lon: req.body.lon,
+      alt: req.body.alt,
+      heading: req.body.heading
 
     }
   )
-  location.save((err)  => {
-    if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
+  location.save((err) => {
+    if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}` })
 
-    return res.status(200).send({message: "Localizacion guardada correctamente en la bd",status:'ok'})
-})
+    return res.status(200).send({ message: "Localizacion guardada correctamente en la bd", status: 'ok' })
+  })
+
 }
 
 const getFlightsLocations = (req, res) => {
