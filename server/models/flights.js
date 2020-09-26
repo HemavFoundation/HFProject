@@ -9,7 +9,8 @@ const FlightSchema = Schema ({
     Date: { type:Number, default: 0},
     Time: { type:Number, default: 0},
     Homecoordindates: { type:Number, default: 0},
-    Regionflown: String,
+    Country: String,
+    Region: String,
     Flighttype: String,
     Flighttime: { type:Number, default: 0},
 })

@@ -21,12 +21,11 @@
     "express": "^4.17.1",
     "hex-encode-decode": "^1.0.0",
     "jwt-simple": "^0.5.6",
-    "moment": "^2.24.0",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.7",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.4"
   }
 }

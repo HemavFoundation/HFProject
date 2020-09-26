@@ -14,7 +14,9 @@ const api = express.Router()
 //rutas autenticación
 api.post('/signup',userCtrl.signUp)
 api.post('/signin',userCtrl.signIn)
+
 api.put('/updateUser/:userDBId',auth, userCtrl.updateUser)
+
 
 //rutas dron
 api.get('/drone',droneCtrl.getDrones)
@@ -23,8 +25,8 @@ api.post('/drone',auth,droneCtrl.saveDrone) // debo usar la autenticación (Auth
 api.put('/drone/:droneId',auth, droneCtrl.updateDrone)
 api.delete('/drone/:droneId',auth, droneCtrl.deleteDrone)
 
-api.post('/flight',flightCtrl.createFlightDetails)
-api.get('/flight',auth,flightCtrl.getFlight)
+//rutas vuelos
+api.post('/flight',flightCtrl.storeJSON)
 
 //rockblock
 api.post("/recieveLocation", rockblock.recieveLocation)
