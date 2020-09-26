@@ -74,9 +74,18 @@ function saveLocation (req,res){
 
 
 
+}
 
+const getFlightsLocations = (req, res) => {
+  res.send([{
+      lat: 41,
+      log: 2,
+      time: '2020_12_30',
+
+  }])
 }
 
 module.exports = {
-  recieveLocation
+  recieveLocation,
+  getFlightsLocations
 };
