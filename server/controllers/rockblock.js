@@ -49,16 +49,13 @@ function recieveLocation(req, res) {
   
   const getFlightsLocations = (req, res) => {
     db.collection('Location').distinct('id_plate').then((idPlates= []) => {
-      const promises = idPlates.map(idPlate => {
-        return db.collection('Location')
+      const promises = idPlates.map(idPlate => db.collection('Location')
         .find({ id_plate: { $eq: idPlate } })
         .sort({_id: -1})
         .limit(1)
         .toArray()
-        .then((droneLocation = []) => {
-          return droneLocation.length  && droneLocation[0]
-        })
-      })
+        .then((droneLocation = []) =>  droneLocation.length  && droneLocation[0])
+      )
 
       Promise.all(promises)
         .then(allLocations => {
