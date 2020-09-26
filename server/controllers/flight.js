@@ -2,9 +2,11 @@
 
 const Flight = require('../models/drone')
 const services = require('../services')
+const mongoose = require('mongoose')
 
 const Drone = require('../models/drone')
 const { db } = require('../models/drone')
+const { stringify } = require('querystring')
 
 
 
@@ -56,33 +58,40 @@ function storeJSON (res){
 
         if (err) return res.status(500).send({message: `Error al leer el json de prueba: ${err}`});
 
+        //convert to JSON format 
         var flight = JSON.parse(data)
-        var id= flight.id;
-        var encontrado = new Boolean(false);
-        // Drone.update(
-        //     {IDPlated: id}, 
-        //     {vehicle_status : 'vehicleSatus' },
-        //     {multi:true}, 
-        //       function(err, numberAffected){  
-        //         if (err) return res.status(500).send({message: `Error al leer el json de prueba: ${err}`});
 
-        //       });
-        console.log(id);
-        //db.collection.find(id)
-        // return res.status(200).send({ message: 'JSON de prueba leido correctamente', status: 'ok'});
-         
+        var idplate= flight.id;
 
+        var dataOfFlights=flight.dataOfFlights;
+        var original_id = mongoose.Types.ObjectId();
+
+        var result = db.collection('drones').find({IDplate: idplate},{_id:original_id});
+        console.log(result)
+
+        // for(var santi in flight){
+
+        //     //first we search for the default id that mongo has generated on the drone that we are looking for
+        //     //ex. drone with IDplate hp1 has default id (_id = 5f69deb9c31...)
+        //     //$_id:original_id  
+        //     var result = db.collection('drones').find({IDplate: idplate},{_id:original_id});
+        //     console.log(id)
+
+        
+        //     //next we generate document containing flight data of the desired drone. 
+        //     //We link drone - dataOfFlights by its dronedbID
+        //     // db.collection('flights').insertOne(
+        //     //     {
+        //     //         "dronedbID":original_id,
+        //     //         "IDplate":idplate,
+        //     //         "dataOfFlights":dataOfFlights
+        //     //     },
+        //     //     {upsert:true}
+        //     // )
+        // }
         
     } );
  
-// Insert JSON straight into MongoDB
-    // db.collection('flight').insert(flight, function (err, res) {
-    //     if (err) res.status(500).send({message: `Error al crear el vuelo: ${err}`, error: true})
-
-    //     //return res.status(200).send({ token: service.createToken(user)})
-    //     return res.status(200).send({ message: 'Vuelo registrado correctamente', status: 'ok'})
-
-// });
 }
 
 
