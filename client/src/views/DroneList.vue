@@ -45,7 +45,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="primary" text @click="dialog = false">Close</v-btn>
-            <v-btn color="primary" text @click="importTxt">Upload</v-btn>
+            <v-btn color="primary" text @click="importTxt">Save</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -81,16 +81,20 @@ export default {
       var reader = new FileReader();
       reader.readAsText(this.chosenFile);
       reader.onload = () => {
-        this.data = reader.result;
+        this.data = JSON.parse(reader.result)
         this.fetchImport(this.data)
+        
       };
     },
     fetchImport(data) {
+      var self = this
       axios
         .post("http://localhost:3001/api/flight", data)
         .then(function (response) {
-          console.log("@@ ");
-        });
+          console.log('Uploaded JSON')  
+          self.dialog = false
+          //TODO: GET(fetch) && SET for upload DRONE LIST
+        })
     },
   },
 };
