@@ -9,14 +9,13 @@ function recieveLocation(req, res) {
   /*
   The body of the JSON recived is:
   {
-      {
-        "drone_id": "HP2-087",
-        "lat": 41.2752192,
-        "lon": 1.9858253,
-        "alt:": 0.733,
-        "heading": 21,
-        "typ": 1,  # type of the message for decoding
-        "status": 01 #status insde of the type of message for the correct decoding
+      "drone_id": "HP2-087",
+      "lat": 41.2752192,
+      "lon": 1.9858253,
+      "alt:": 0.733,
+      "heading": 21,
+      "typ": 1,  # type of the message for decoding
+      "status": 01 #status insde of the type of message for the correct decoding
   }
   */
 
@@ -24,7 +23,28 @@ function recieveLocation(req, res) {
   data = JSON.parse(rawdata)
 
   jsondata = JSON.parse(hex.decode(data.data))
-  console.log(jsondata)
+
+  time = data.transmit_time
+  id_plate = jsondata.drone_id
+  lat = jsondata.lat
+  lon = jsondata.lon
+  alt = jsondata.alt
+  heading = jsondata.heading
+
+  var location = {
+    id_plate: id_plate,
+    time: time,
+    lat: lat,
+    lon: lon,
+    alt: alt,
+    heading: heading
+  }
+
+  console.log(location)
+
+
+  
+
 
 
 
