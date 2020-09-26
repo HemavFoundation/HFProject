@@ -72,8 +72,7 @@ function storeJSON (res){
             db.collection('flights').insertOne(
                         {
                             "dronedbID":original_id,
-                            "IDplate":idplate,
-                            "dataOfFlights":flightData
+                            ...flightData
                         },
                         {upsert:true}
                     )
