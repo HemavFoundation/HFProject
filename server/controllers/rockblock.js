@@ -3,7 +3,7 @@ const fs = require('fs');
 const hex = require('hex-encode-decode');
 const config = require('../config')
 const socketService = require('../index')
-const Location=require('../models/location')
+const Location = require('../models/location')
 const { db } = require('../models/drone')
 
 function recieveLocation(req, res) {
@@ -42,7 +42,7 @@ function recieveLocation(req, res) {
   }
   db.collection('Location').insertOne( 
     {
-        "Location": location
+        ...location
     },
     {upsert:true}
   )

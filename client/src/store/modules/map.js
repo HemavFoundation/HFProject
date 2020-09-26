@@ -1,6 +1,7 @@
 const state = {
     lat: '',
-    lon: ''
+    lon: '',
+    dronesLiveLocations: []
 }
 
 const actions = {
@@ -9,6 +10,9 @@ const actions = {
     },
     setLon({commit}, lon) {
         commit('SET_LONGITUD', lon)
+    },
+    setDronesLocations({commit}, locations = [] ) {
+        commit('SET_DRONES_LOCATIONS', locations)
     }
 }
 
@@ -18,6 +22,9 @@ const mutations = {
     },
     SET_LONGITUD(state, lon){
         state.lon = lon
+    },
+    SET_DRONES_LOCATIONS(state, locations) {
+        state.dronesLiveLocations = locations
     }
 }
 
@@ -27,6 +34,9 @@ const getters = {
     },
     getLon(state){
         return state.lon
+    },
+    getDronesLocations(state) {
+        return state.dronesLiveLocations
     }
 }
 
