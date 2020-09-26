@@ -25,13 +25,14 @@ function getFlightDetails (req,res) {
 function storeFlights(req,res) {
 
     let flights_data = req.body;
-
+    console.log(flights_data)
     //results.json only for testing. Here we will have to put the usb path that the user will use.
     const fs = require('fs');
-
+    let flights_data_parsed = JSON.parse(flights_data)
     //see fs.readfilesync because could be better when using directory instead of results.json
-    fs.readFile(flights_data, (err, data) => {
+    fs.readFileSync('doc', (err, data) => {
 
+        console.log('@@@@@@@@@@@@@@@@@@@@@',data);
         if (err) return res.status(500).send({ message: `Error al leer el json de prueba: ${err}` });
 
         //convert to JSON format 
