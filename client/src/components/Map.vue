@@ -49,7 +49,7 @@ import {
 import { mapActions, mapGetters, mapState } from "vuex";
 import axios from "axios";
 
-const MINUTES_TO_FETCH_LOCATIONS = 1
+const MINUTES_TO_FETCH_LOCATIONS = 0.5
 
 export default {
   name: "Map",
