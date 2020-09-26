@@ -50,6 +50,7 @@ function storeFlights(req,res) {
                 },
                 { upsert: true }
             )
+            res.status(200).send({message:'Resultados del JSON leidos y guardados correctamente'})
         });
 
     });
