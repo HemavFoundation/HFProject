@@ -91,9 +91,9 @@ export default {
       axios
         .post("http://localhost:3001/api/flight", data)
         .then(function (response) {
-          console.log('Uploaded JSON')
+          console.log('Uploaded JSON')  
           self.dialog = false
-          //TODO: fetch for upload DRONE LIST
+          //TODO: GET(fetch) && SET for upload DRONE LIST
         })
     },
   },
