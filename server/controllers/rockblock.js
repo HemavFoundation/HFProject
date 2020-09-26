@@ -48,20 +48,25 @@ function recieveLocation(req, res) {
   }
   
   const getFlightsLocations = (req, res) => {
-    res.send([
-      {
-        lat: 33,
-        lon: 12,
-        time: '2020_12_30',
-        drone_id: 'HP1',
-      },
-      {
-        lat: 33,
-        lon: 11,
-        time: '2020_12_30',
-        drone_id: 'HP1',
-      }
-    ])
+    db.collection('Location').distinct('id_plate').then((idPlates= []) => {
+      const promises = idPlates.map(idPlate => {
+        return db.collection('Location')
+        .find({ id_plate: { $eq: idPlate } })
+        .sort({_id: -1})
+        .limit(1)
+        .toArray()
+        .then((droneLocation = []) => {
+          return droneLocation.length  && droneLocation[0]
+        })
+      })
+
+      Promise.all(promises)
+        .then(allLocations => {
+          res.send(allLocations.filter(Boolean))
+        }).catch(error => {
+          res.status(500).send({ok: false, error})
+        })
+    })
   }
   
   module.exports = {
