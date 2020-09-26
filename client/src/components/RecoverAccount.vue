@@ -20,8 +20,9 @@
             <v-card-actions>
               <v-spacer />
               <v-row align="center">
-                  <!-- @click.stop allows us to show the dialog when clicked -->
+                <!-- @click.stop allows us to show the dialog when clicked -->
                 <v-btn color="primary" @click.stop="dialog = true">Recover account</v-btn>
+                <v-btn color="primary" class="droneListMarginLeft" v-on:click="back()">Back</v-btn>
                 <!-- Popup information-->
                 <v-dialog v-model="dialog" max-width="400">
                   <v-card>
@@ -46,10 +47,21 @@
 export default {
   name: "RecoverAccount",
   //dialog:false is needed for the recovery popup
-  data () {
-      return {
-        dialog: false,
-      }
+  data() {
+    return {
+      dialog: false
+    };
+  },
+  methods: {
+    back() {
+      this.$router.go(-1);
     }
+  }
 };
 </script>
+
+<style scoped>
+.droneListMarginLeft {
+  margin-left: 20px;
+}
+</style>
