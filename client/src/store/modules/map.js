@@ -1,6 +1,8 @@
+import L from 'leaflet'
 const state = {
     lat: '',
-    lon: ''
+    lon: '',
+    dronesLiveMarkers: []
 }
 
 const actions = {
@@ -9,6 +11,11 @@ const actions = {
     },
     setLon({commit}, lon) {
         commit('SET_LONGITUD', lon)
+    },
+    setDronesMarkers({commit}, locations = [] ) {
+        const markers = locations.map(location => L.latLng(location.lat, location.lon))
+
+        commit('SET_DRONES_MARKERS', markers)
     }
 }
 
@@ -18,6 +25,9 @@ const mutations = {
     },
     SET_LONGITUD(state, lon){
         state.lon = lon
+    },
+    SET_DRONES_MARKERS(state, markers) {
+        state.dronesLiveMarkers = markers
     }
 }
 
@@ -27,6 +37,9 @@ const getters = {
     },
     getLon(state){
         return state.lon
+    },
+    getDronesMarkers(state) {
+        return state.dronesLiveMarkers
     }
 }
 
