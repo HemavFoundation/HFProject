@@ -61,34 +61,23 @@ function storeJSON (res){
         //convert to JSON format 
         var flight = JSON.parse(data)
 
-        var idplate= flight.id;
-
-        var dataOfFlights=flight.dataOfFlights;
-        var original_id = mongoose.Types.ObjectId();
-
-        var result = db.collection('drones').find({IDplate: idplate},{_id:original_id});
-        console.log(result)
-
-        // for(var santi in flight){
-
-        //     //first we search for the default id that mongo has generated on the drone that we are looking for
-        //     //ex. drone with IDplate hp1 has default id (_id = 5f69deb9c31...)
-        //     //$_id:original_id  
-        //     var result = db.collection('drones').find({IDplate: idplate},{_id:original_id});
-        //     console.log(id)
-
         
-        //     //next we generate document containing flight data of the desired drone. 
-        //     //We link drone - dataOfFlights by its dronedbID
-        //     // db.collection('flights').insertOne(
-        //     //     {
-        //     //         "dronedbID":original_id,
-        //     //         "IDplate":idplate,
-        //     //         "dataOfFlights":dataOfFlights
-        //     //     },
-        //     //     {upsert:true}
-        //     // )
-        // }
+       flight.dataOfFlights.forEach(async flightData => {
+            var idplate= flightData.id_plate;
+            var original_id = mongoose.Types.ObjectId();
+            console.log(idplate);
+            var result = await db.collection('drones').findOne({IdPlate: idplate});
+            original_id=result._id;
+            console.log(original_id);
+            db.collection('flights').insertOne(
+                        {
+                            "dronedbID":original_id,
+                            "IDplate":idplate,
+                            "dataOfFlights":flightData
+                        },
+                        {upsert:true}
+                    )
+        });
         
     } );
  
