@@ -77,12 +77,20 @@ function saveLocation (req,res){
 }
 
 const getFlightsLocations = (req, res) => {
-  res.send([{
-      lat: 41,
-      log: 2,
+  res.send([
+    {
+      lat: 33,
+      lon: 12,
       time: '2020_12_30',
       drone_id: 'HP1',
-  }])
+    },
+    {
+      lat: 33,
+      lon: 11,
+      time: '2020_12_30',
+      drone_id: 'HP1',
+    }
+  ])
 }
 
 module.exports = {
