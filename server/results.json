@@ -12,6 +12,7 @@
             "region": "África",
             "date": "2010-07-30T15:05:00.000Z",
             "flightTime": "1000",
+            "saved": "false",
             "GreenResults": [
                 {
                     "image_id": 1,
@@ -465,6 +466,7 @@
             "region": "África",
             "date": "2010-07-30T15:05:00.000Z",
             "flightTime": "1000",
+            "saved": "false",
             "GreenResults": [
                 {
                     "image_id": 1,

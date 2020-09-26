@@ -26,7 +26,7 @@ api.put('/drone/:droneId',auth, droneCtrl.updateDrone)
 api.delete('/drone/:droneId',auth, droneCtrl.deleteDrone)
 
 //rutas vuelos
-api.post('/flight',flightCtrl.storeJSON)
+api.post('/flight',flightCtrl.storeFlights)
 api.get('/flights', flightCtrl.getFlightDetails)
 
 //rockblock
