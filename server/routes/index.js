@@ -30,6 +30,6 @@ api.post('/flight',flightCtrl.storeJSON)
  
 //rockblock
 api.post("/recieveLocation", rockblock.recieveLocation)
-api.get('/lastDronesLocation', rockblock.getFlightsLocations)
+api.get('/lastDronesLocations', rockblock.getFlightsLocations)
 
 module.exports = api
