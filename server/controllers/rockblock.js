@@ -17,12 +17,11 @@ function recieveLocation(req, res) {
   }
   */
 
-  const rawdata = fs.readFileSync(__dirname + '/rockblock.json');
-  const data = JSON.parse(rawdata)
+  const rawdata = req.body
 
-  const jsondata = JSON.parse(hex.decode(data.data))
+  const jsondata = JSON.parse(hex.decode(rawdata.data))
 
-  const time = data.transmit_time
+  const time = rawdata.transmit_time
   const id_plate = jsondata.drone_id
   const lat = jsondata.lat
   const lon = jsondata.lon
@@ -39,33 +38,13 @@ function recieveLocation(req, res) {
   }
   db.collection('Location').insertOne( 
     location,
-    {upsert:true}
+    { upsert: true }
   ).then(() => {
-    res.status(200).send({ok: true})
+    res.status(200).send({ ok: true })
   }).catch((error) => {
-    res.send({ok: false, error})
+    res.send({ ok: false, error })
   })
    
-}
-
-function saveLocation(req, res) {
-  const location = new Location(
-    {
-      id_plate: req.body.id_plate,
-      time: req.body.time,
-      lat: req.body.lat,
-      lon: req.body.lon,
-      alt: req.body.alt,
-      heading: req.body.heading
-
-    }
-  )
-  location.save((err) => {
-    if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}` })
-
-    return res.status(200).send({ message: "Localizacion guardada correctamente en la bd", status: 'ok' })
-  })
-
 }
 
 const getFlightsLocations = (req, res) => {
