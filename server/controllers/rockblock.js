@@ -1,8 +1,5 @@
-const { json } = require('body-parser');
 const fs = require('fs');
 const hex = require('hex-encode-decode');
-const config = require('../config')
-const socketService = require('../index')
 const Location = require('../models/location')
 const { db } = require('../models/drone')
 
@@ -20,19 +17,19 @@ function recieveLocation(req, res) {
   }
   */
 
-  rawdata = fs.readFileSync(__dirname + '/rockblock.json');
-  data = JSON.parse(rawdata)
+  const rawdata = fs.readFileSync(__dirname + '/rockblock.json');
+  const data = JSON.parse(rawdata)
 
-  jsondata = JSON.parse(hex.decode(data.data))
+  const jsondata = JSON.parse(hex.decode(data.data))
 
-  time = data.transmit_time
-  id_plate = jsondata.drone_id
-  lat = jsondata.lat
-  lon = jsondata.lon
-  alt = jsondata.alt
-  heading = jsondata.heading
+  const time = data.transmit_time
+  const id_plate = jsondata.drone_id
+  const lat = jsondata.lat
+  const lon = jsondata.lon
+  const alt = jsondata.alt
+  const heading = jsondata.heading
 
-  let location = {
+  const location = {
     id_plate: id_plate,
     time: time,
     lat: lat,
@@ -41,11 +38,13 @@ function recieveLocation(req, res) {
     heading: heading
   }
   db.collection('Location').insertOne( 
-    {
-        ...location
-    },
+    location,
     {upsert:true}
-  )
+  ).then(() => {
+    res.status(200).send({ok: true})
+  }).catch((error) => {
+    res.send({ok: false, error})
+  })
    
 }
 
