@@ -66,7 +66,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const userJson = JSON.parse(localStorage.getItem('vuex'))
-  if (userJson != null || to.path === '/') {
+  if (userJson != null || to.path === '/' || to.path === '/Register' || to.path === '/RecoverAccount') {
     next()
   } else {
     next({
