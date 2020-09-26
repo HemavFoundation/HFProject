@@ -1,4 +1,4 @@
-<template>
+  Xº<template>
 
   <div style="
         width: 100%;
@@ -23,14 +23,20 @@
       @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url"></l-tile-layer>
-      <l-marker :latLng="marker" :icon="icon"></l-marker>
+      <l-marker :latLng="marker" :icon="icon">
+        <l-popup :options="{ permanent: false, interactive: true }">
+           <div>
+            
+           </div>
+        </l-popup>
+      </l-marker>
     </l-map>
     </div>
 </template>
 
 <script>
 import L from 'leaflet';
-import { LMap, LTileLayer, LMarker, LRectangle, LIcon } from 'vue2-leaflet';
+import { LMap, LTileLayer, LMarker, LRectangle, LIcon, LPopup } from 'vue2-leaflet';
 import { mapActions, mapGetters, mapState } from 'vuex'
 
 const dataTest = [{lat: 50.5, lon: 30.5}, {lat: 70.5, lon: 50.5}, {lat: 30.5, lon: 5.5} ,{lat: 41.5, lon: 2.5}, {lat: 31.5, lon: 4.5}]
@@ -44,7 +50,8 @@ export default {
     LTileLayer,
     LMarker,
     LRectangle,
-    LIcon
+    LIcon,
+    LPopup
   },
   beforeCreate() {
     // console.log('- BeforeCreate')
