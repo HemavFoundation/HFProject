@@ -22,7 +22,9 @@ function recieveLocation(req, res) {
 
   // rawdata = fs.readFileSync(__dirname + '/rockblock.json');
   rawdata = req.body
+  console.log("rawdata:",req.body)
   data = JSON.parse(rawdata)
+  console.log("data",data)
 
   jsondata = JSON.parse(hex.decode(data.data))
 
