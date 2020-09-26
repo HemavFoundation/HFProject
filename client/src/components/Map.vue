@@ -12,8 +12,6 @@
       <span>Center: {{ center }}</span>
       <span>Zoom: {{ zoom }}</span>
       <span>Bounds: {{ bounds }}</span>
-      <span>Latitude: {{ lat }}</span>
-      <span>Longitude: {{ lon }}</span>
     </div>
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
@@ -51,6 +49,8 @@ import {
 import { mapActions, mapGetters, mapState } from "vuex";
 import axios from "axios";
 
+const MINUTES_TO_FETCH_LOCATIONS = 1
+
 export default {
   name: "Map",
   components: {
@@ -71,7 +71,6 @@ export default {
       zoom: 3,
       center: [22.917923, 20.126953],
       bounds: null,
-      marker: L.latLng(this.$store.state.map.lat, this.$store.state.map.lon),
       icon: L.icon({
         iconUrl: require("../../public/img/icons/drone-map.png"),
         iconSize: [32, 37],
@@ -81,15 +80,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      lat: "map/getLat",
-      lon: "map/getLon",
       dronesMarkers: "map/getDronesMarkers"
     })
   },
   methods: {
     ...mapActions({
-      setLat: "map/setLat",
-      setLon: "map/setLon",
       setDronesMarkers: "map/setDronesMarkers"
     }),
     zoomUpdated(zoom) {
@@ -100,25 +95,6 @@ export default {
     },
     boundsUpdated(bounds) {
       this.bounds = bounds;
-    },
-    /*     todo: function(){
-            const self = this
-            this.intervalId = setInterval(function() {
-              // here we call recieveLocation function
-              if(intervalCounter < 5){
-                self.setLat(dataTest[intervalCounter].lat)
-                self.setLon(dataTest[intervalCounter].lon)
-                self.marker = L.latLng(self.lat, self.lon)
-              }
-
-              intervalCounter +=1
-            }, 5 * 1000); // 60 * 1000 milsec = 1 min.
-            //console.log(this.intervalId)
-    }, */
-    clickButton: function(data) {
-      // console.log(this)
-      // console.log(data)
-      //this.$socket.emit('emit_method', data)
     },
     getLastFlightsLocations() {
       axios
@@ -132,17 +108,11 @@ export default {
     }
   },
   created() {},
-  beforeMount() {
-    // console.log(`- BeforeMount`)
-    // console.log(this)
-  },
+  beforeMount() {},
   mounted() {
-    //console.log(`- Mounted`);
-    // console.log(this)
-    this.intervalId = setInterval(this.getLastFlightsLocations, 50 * 60);
+    this.intervalId = setInterval(this.getLastFlightsLocations, MINUTES_TO_FETCH_LOCATIONS * 60000);
   },
   beforeDestroy() {
-    // console.log("beforeDestroy")
     clearInterval(this.intervalId); //kill setInterval when the component is detroyed
   }
 };
