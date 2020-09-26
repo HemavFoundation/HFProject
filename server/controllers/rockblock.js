@@ -3,7 +3,7 @@ const fs = require('fs');
 const hex = require('hex-encode-decode');
 const config = require('../config')
 const socketService = require('../index')
-const Location=require('../models/location')
+const Location = require('../models/location')
 const { db } = require('../models/drone')
 
 function recieveLocation(req, res) {
@@ -20,7 +20,8 @@ function recieveLocation(req, res) {
   }
   */
 
-  rawdata = fs.readFileSync(__dirname + '/rockblock.json');
+  // rawdata = fs.readFileSync(__dirname + '/rockblock.json');
+  rawdata = req.body
   data = JSON.parse(rawdata)
 
   jsondata = JSON.parse(hex.decode(data.data))
@@ -40,37 +41,37 @@ function recieveLocation(req, res) {
     alt: alt,
     heading: heading
   }
-  db.collection('Location').insertOne( 
+  db.collection('Location').insertOne(
     {
-        "Location": location
+      "Location": location
     },
-    {upsert:true}
+    { upsert: true }
   )
-   
+
 }
 
-function saveLocation (req,res){
+function saveLocation(req, res) {
   const location = new Location(
     {
-      id_plate:req.body.id_plate,
-      time:req.body.time,
-      lat:req.body.lat,
-      lon:req.body.lon,
-      alt:req.body.alt,
-      heading:req.body.heading
+      id_plate: req.body.id_plate,
+      time: req.body.time,
+      lat: req.body.lat,
+      lon: req.body.lon,
+      alt: req.body.alt,
+      heading: req.body.heading
 
     }
   )
-  location.save((err)  => {
-    if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
+  location.save((err) => {
+    if (err) res.status(500).send({ message: `Error al salvar en la base de datos: ${err}` })
 
-    return res.status(200).send({message: "Localizacion guardada correctamente en la bd",status:'ok'})
-})
- 
+    return res.status(200).send({ message: "Localizacion guardada correctamente en la bd", status: 'ok' })
+  })
+
   console.log(location)
 
 
-  
+
 
 
 
