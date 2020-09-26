@@ -14,7 +14,6 @@
       <span>Bounds: {{ bounds }}</span>
       <span>Latitude: {{ lat }}</span>
       <span>Longitude: {{ lon }}</span>
-      <v-btn class="my-2" small color="secondary" @click="getLastFlightsLocations">Socket</v-btn>
     </div>
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
