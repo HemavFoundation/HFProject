@@ -4,7 +4,7 @@ const mongoose = require ('mongoose')
 const User = require ('../models/user')
 const service = require('../services')
 const user = require('../models/user')
-
+    
 //no creamos un password porque como vemos en el user.js ya tenemos una funcion de mongoose que presalva la contra hasheada
 function signUp (req,res) {
     const user = new User({
@@ -48,6 +48,7 @@ function signIn(req,res) {
         })
     })
 }
+
 function updateUser(req,res) {
     let userDBId = req.params.userDBId
     let update = req.body
