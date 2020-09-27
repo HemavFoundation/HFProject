@@ -10,9 +10,6 @@
     <l-map
       :zoom="zoom"
       :center="center"
-      @update:zoom="zoomUpdated"
-      @update:center="centerUpdated"
-      @update:bounds="boundsUpdated"
     >
       <l-tile-layer :url="url"></l-tile-layer>
       <l-marker v-for="marker, index in dronesMarkers" :lat-lng="marker" :icon="icon">
