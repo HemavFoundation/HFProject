@@ -5,14 +5,7 @@
         height: 500px;
         z-index: 1;
         position: relative;
-  "
-    id="socketMap"
-  >
-    <div style="height: 5%; margin: 1rem;">
-      <span>Center: {{ center }}</span>
-      <span>Zoom: {{ zoom }}</span>
-      <span>Bounds: {{ bounds }}</span>
-    </div>
+  ">
     <!-- Style props (position, left, transform) coded in order to center the map-->
     <l-map
       :zoom="zoom"
