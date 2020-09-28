@@ -79,7 +79,7 @@ export default {
           country: country
         };
         axios
-          .post("/api/signup", data)
+          .post(process.env.VUE_APP_API+"/api/signup", data)
           .then(function(response) {
             console.log(response.data);
             router.push("/");
