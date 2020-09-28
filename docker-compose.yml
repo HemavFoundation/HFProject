@@ -4,5 +4,5 @@ services:
     image: locust
     ports:
       - 9999:80
-    volumes: 
-      - ./client/dist:/usr/share/nginx/html
+      - 80:80
+    restart: always
