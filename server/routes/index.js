@@ -9,6 +9,7 @@ const rockblock = require('../controllers/rockblock')
 const api = express.Router()
 
 
+
 //el auth me permite pedir autorizacion mediante un token (que va en la cabecera bearer) para poder hacer algunas acciones como post o delete. El get de product no necesito porque si que todo el mundo debe poder ver los productos
 
 //rutas autenticación

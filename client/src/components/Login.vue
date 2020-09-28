@@ -94,7 +94,7 @@ export default {
         password: password,
       };
       axios
-        .post("http://3.18.112.122:3001/api/signin", userData)
+        .post("https://3.18.112.122:3001/api/signin", userData)
         .then((response) => {
           //Declaring all data from user that will be stored on the app
           console.log(response.data);

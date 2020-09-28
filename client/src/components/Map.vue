@@ -98,7 +98,7 @@ export default {
     },
     getLastFlightsLocations() {
       axios
-        .get("http://3.18.112.122:3001/api/lastDronesLocations")
+        .get("https://3.18.112.122:3001/api/lastDronesLocations")
         .then(response => {
           if (response.data.length > 0) {
             const locations = response.data;
