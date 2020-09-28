@@ -120,7 +120,7 @@ export default {
                 'authorization': 'Bearer ' + this.$store.state.user.token
             }
           })
-          .post("http://localhost:3001/api/drone", data)
+          .post("/api/drone", data)
           .then(function(response) {
             console.log(response.data);
             router.push("/DroneList");

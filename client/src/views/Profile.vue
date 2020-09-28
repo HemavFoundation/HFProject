@@ -155,7 +155,7 @@ export default {
             authorization: "Bearer " + this.$store.state.user.token
           }
         })
-        .put("http://localhost:3001/api/updateUser/"+userProfile.userDBId, userProfile)
+        .put("/api/updateUser/"+userProfile.userDBId, userProfile)
         .then(response => {
           //Declaring all data from user that will be stored on the app
           const userName = response.data.userName;
