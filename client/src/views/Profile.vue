@@ -150,12 +150,12 @@ export default {
       };
       axios
         .create({
-          baseURL: "http://localhost:8080",
+          baseURL: "http://3.18.112.122:8080",
           headers: {
             authorization: "Bearer " + this.$store.state.user.token
           }
         })
-        .put("http://localhost:3001/api/updateUser/"+userProfile.userDBId, userProfile)
+        .put("http://3.18.112.122:3001/api/updateUser/"+userProfile.userDBId, userProfile)
         .then(response => {
           //Declaring all data from user that will be stored on the app
           const userName = response.data.userName;

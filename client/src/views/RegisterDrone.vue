@@ -115,12 +115,12 @@ export default {
         axios
         //Use .create to make authorized posts through headers + token
         .create({
-            baseURL: 'http://localhost:8080',
+            baseURL: 'http://3.18.112.122:8080',
             headers: {
                 'authorization': 'Bearer ' + this.$store.state.user.token
             }
           })
-          .post("http://localhost:3001/api/drone", data)
+          .post("http://3.18.112.122:3001/api/drone", data)
           .then(function(response) {
             console.log(response.data);
             router.push("/DroneList");

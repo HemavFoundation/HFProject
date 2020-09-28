@@ -79,7 +79,7 @@ export default {
           country: country
         };
         axios
-          .post("http://localhost:3001/api/signup", data)
+          .post("http://3.18.112.122:3001/api/signup", data)
           .then(function(response) {
             console.log(response.data);
             router.push("/");
