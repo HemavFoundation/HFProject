@@ -110,6 +110,7 @@ export default {
   created() {},
   beforeMount() {},
   mounted() {
+    this.getLastFlightsLocations()
     this.intervalId = setInterval(this.getLastFlightsLocations, MINUTES_TO_FETCH_LOCATIONS * 60000);
   },
   beforeDestroy() {
