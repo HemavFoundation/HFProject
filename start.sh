@@ -1,3 +1,3 @@
 #!/bin/sh
-# node index.js > /var/log/node-server.log &
+forever start /server/index.js
 nginx -g "daemon off;"
