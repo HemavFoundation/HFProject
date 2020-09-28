@@ -98,7 +98,7 @@ export default {
     },
     getLastFlightsLocations() {
       axios
-        .get("http://localhost:3001/api/lastDronesLocations")
+        .get("/api/lastDronesLocations")
         .then(response => {
           if (response.data.length > 0) {
             const locations = response.data;
