@@ -98,7 +98,7 @@ export default {
     },
     getLastFlightsLocations() {
       axios
-        .get("/api/lastDronesLocations")
+        .get(process.env.VUE_APP_API+"/api/lastDronesLocations")
         .then(response => {
           if (response.data.length > 0) {
             const locations = response.data;
