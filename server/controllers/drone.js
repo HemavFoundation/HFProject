@@ -29,10 +29,10 @@ function saveDrone (req,res) {
  const drone = new Drone({
     IdPlate:req.body.IdPlate,
     Manufacturer:req.body.Manufacturer,
-    Madedate:req.body.Madedate,
+    Madedate:req.body.MadeDate,
     Owner:req.body.Owner,
-    Personincharge:req.body.Personincharge,
-    Pilotassigned:req.body.Pilotassigned,
+    Personincharge:req.body.PersonInCharge,
+    Pilotassigned:req.body.PilotsAssigned,
     Country:req.body.Country,
    
  })
