@@ -29,10 +29,10 @@ function saveDrone (req,res) {
  const drone = new Drone({
     IdPlate:req.body.IdPlate,
     Manufacturer:req.body.Manufacturer,
-    Madedate:req.body.MadeDate,
+    MadeDate:req.body.MadeDate,
     Owner:req.body.Owner,
-    Personincharge:req.body.PersonInCharge,
-    Pilotassigned:req.body.PilotsAssigned,
+    PersonInCharge:req.body.PersonInCharge,
+    PilotsAssigned:req.body.PilotsAssigned,
     Country:req.body.Country,
    
  })
@@ -41,7 +41,7 @@ function saveDrone (req,res) {
  drone.save((err)  => {
      if (err) res.status(500).send({message: `Error al salvar en la base de datos: ${err}`})
 
-     return res.status(200).send({message: "Dron guardado correctamente en la bd",status:'ok'})
+     return res.status(200).send({message: "Dron guardado correctamente en la bd",status:'ok', drone})
  })
 }
 

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema
 const DroneSchema = Schema ({
     IdPlate: String,
     Manufacturer: String,
-    MadeDate: { type:Number, default: 0},
+    MadeDate: Date,
     Owner: String,
     PersonInCharge: String,
     PilotsAssigned: String,
