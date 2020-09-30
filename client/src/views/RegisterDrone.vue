@@ -47,6 +47,7 @@
                   id="PersonInCharge"
                   type="text"
                 />
+                
                 <v-text-field
                   label="Pilots assigned"
                   name="PilotsAssigned"
@@ -57,13 +58,11 @@
                   v-model="country"
                   :items="countryData"
                   item-text='name'
-                  item-value='code'
+                  item-value='name'
                   menu-props="auto"
                   label="Country"
                   name="Country"
                   id="Country"
-                  hide-details
-                  single-line
                 ></v-select>
 
               </v-form>

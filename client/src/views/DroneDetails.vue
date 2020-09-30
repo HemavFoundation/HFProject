@@ -33,9 +33,6 @@
     <v-card class="my-2">
       <v-tabs>
         <v-tab>Flights list</v-tab>
-        <v-tab>
-          
-        </v-tab>
       </v-tabs>
     </v-card>
     <!-- DroneDetails table component -->

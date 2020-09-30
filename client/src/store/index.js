@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './modules/user'
 import map from './modules/map'
+import droneList from './modules/droneList'
 import VuexPersist from 'vuex-persist'
 
 
@@ -14,7 +15,8 @@ const vuexPersist = new VuexPersist({
 export default new Vuex.Store({
   modules: {
     user,
-    map
+    map,
+    droneList
   },
   plugins: [vuexPersist.plugin]
 })
