@@ -94,7 +94,7 @@ export default {
         password: password,
       };
       axios
-        .post("http://localhost:3001/api/signin", userData)
+        .post(process.env.VUE_APP_API+"/api/signin", userData)
         .then((response) => {
           //Declaring all data from user that will be stored on the app
           console.log(response.data);

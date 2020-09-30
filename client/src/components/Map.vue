@@ -98,7 +98,7 @@ export default {
     },
     getLastFlightsLocations() {
       axios
-        .get("http://localhost:3001/api/lastDronesLocations")
+        .get(process.env.VUE_APP_API+"/api/lastDronesLocations")
         .then(response => {
           if (response.data.length > 0) {
             const locations = response.data;
@@ -110,6 +110,7 @@ export default {
   created() {},
   beforeMount() {},
   mounted() {
+    this.getLastFlightsLocations()
     this.intervalId = setInterval(this.getLastFlightsLocations, MINUTES_TO_FETCH_LOCATIONS * 60000);
   },
   beforeDestroy() {

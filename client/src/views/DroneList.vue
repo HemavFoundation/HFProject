@@ -89,7 +89,7 @@ export default {
     fetchImport(data) {
       var self = this
       axios
-        .post("http://localhost:3001/api/flight", data)
+        .post(process.env.VUE_APP_API+"/api/flight", data)
         .then(function (response) {
           console.log('Uploaded JSON')  
           self.dialog = false
